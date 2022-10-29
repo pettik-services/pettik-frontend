@@ -1,26 +1,80 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~antd/dist/antd.css';
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@layer base {
+  @font-face {
+      font-family: 'sans-bold';
+      src: url('../assets/fonts/sans-bold.ttf') format('truetype');
   }
-  body {
-    color: white;
-    background: black;
+  @font-face {
+      font-family: 'sans-bold-italic';
+      src: url('../assets/fonts/sans-bold-italic.ttf') format('truetype');
   }
+  @font-face {
+      font-family: 'sans-extra-light-italic';
+      src: url('../assets/fonts/sans-extra-light-italic.ttf') format('truetype');
+  }
+  @font-face {
+      font-family: 'sans-extra-light';
+      src: url('../assets/fonts/sans-extra-light.ttf') format('truetype');
+  }
+  @font-face {
+      font-family: 'sans-italic';
+      src: url('../assets/fonts/sans-italic.ttf') format('truetype');
+  }
+  @font-face {
+      font-family: 'sans-light-italic';
+      src: url('../assets/fonts/sans-light-italic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-light';
+    src: url('../assets/fonts/sans-light.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-medium-italic';
+    src: url('../assets/fonts/sans-medium-italic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-medium';
+    src: url('../assets/fonts/sans-medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-regular';
+    src: url('../assets/fonts/sans-regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-semi-bold-italic';
+    src: url('../assets/fonts/sans-semi-bold-italic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-semi-bold';
+    src: url('../assets/fonts/sans-semi-bold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-thin-italic';
+    src: url('../assets/fonts/sans-thin-italic.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'sans-thin';
+    src: url('../assets/fonts/sans-thin.ttf') format('truetype');
+  }
+  h6 {
+      @apply font-bold
+  }
+  h1 {
+      @apply font-bold text-3xl
+  }
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
