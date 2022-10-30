@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const DeskNav = () => {
   return (
-    <div className='flex w-full fixed'>
+    <div className='flex w-full fixed z-20'>
       <div className='flex flex-col w-full'>
         <Notification
           description={{

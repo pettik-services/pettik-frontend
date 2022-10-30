@@ -20,7 +20,7 @@ const MobileNav: React.FC = () => {
 
   return (
     <>
-      <div className='fixed bg-primary-dark w-full h-14 flex py-2 items-center justify-center'>
+      <div className='fixed bg-primary-dark w-full h-14 flex py-2 items-center justify-center z-20'>
         <Image src={Logo} alt='Logo' className='h-10 w-10' />
         <div className='absolute top-0 left-0 flex items-center px-4 h-14 z-20'>
           <GiHamburgerMenu
