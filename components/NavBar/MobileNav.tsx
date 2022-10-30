@@ -1,22 +1,9 @@
-import { Drawer } from "antd";
-import type { DrawerProps } from "antd/es/drawer";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../assets/images/logo.png";
 import { GiHamburgerMenu } from "react-icons/gi/index";
 
 const MobileNav: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [size, setSize] = useState<DrawerProps["size"]>();
-
-  const showDefaultDrawer = () => {
-    setSize("default");
-    setOpen(true);
-  };
-
-  const onClose = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -26,18 +13,10 @@ const MobileNav: React.FC = () => {
           <GiHamburgerMenu
             size={24}
             className='text-white'
-            onClick={showDefaultDrawer}
+            onClick={() => console.log('open drawer')}
           />
         </div>
       </div>
-      <Drawer
-        placement='left'
-        width={"100%"}
-        onClose={onClose}
-        open={open}
-        className='w-[80%]'>
-        Yet to build
-      </Drawer>
     </>
   );
 };
