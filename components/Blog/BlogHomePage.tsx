@@ -4,7 +4,7 @@ import BlogImg from "../../assets/images/blog-img.png";
 
 const BlogHomePage = () => {
   return (
-    <div className='flex flex-col w-full items-center justify-center gap-8 md:gap-12 pb-12'>
+    <div className='flex flex-col w-full items-center justify-center gap-8 md:gap-12 pb-16 pt-12'>
       <div className='font-bold text-3xl px-6 text-center md:px-0'>
         Health Tips from Experts
       </div>
