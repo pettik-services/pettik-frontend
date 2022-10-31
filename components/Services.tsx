@@ -55,8 +55,8 @@ const Services = () => {
         they can look their best before they go back home with you!
       </div>
       <div className='grid grid-cols-1 pt-6 md:grid-cols-3 items-center justify-center w-full gap-x-16 gap-y-8 px-4'>
-        {serviceData.map((service) => (
-          <ServiceItem {...service} />
+        {serviceData.map((service, key) => (
+          <ServiceItem {...service} key={key} />
         ))}
       </div>
     </div>

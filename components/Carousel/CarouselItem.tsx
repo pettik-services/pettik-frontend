@@ -12,14 +12,13 @@ export type BannerItemProps = {
     description: string;
     buttonText: string;
   };
-  key: number;
   color: "dark" | "light";
   alignContent: "left" | "right" | "center";
   showContent?: boolean;
+  key?: number;
 };
 
 const CarouselItem: React.FC<BannerItemProps> = ({
-  key,
   desktopImage,
   mobileImage,
   href,
@@ -27,11 +26,12 @@ const CarouselItem: React.FC<BannerItemProps> = ({
   color,
   alignContent,
   showContent = true,
+  key,
 }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   return (
-    <div className='w-full h-56 md:h-72 relative'>
+    <div className='w-full h-56 md:h-72 relative' key={key}>
       <Image
         src={isTabletOrMobile ? mobileImage : desktopImage}
         alt={content?.title || ""}

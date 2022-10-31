@@ -80,8 +80,8 @@ const Header = () => {
           </Link>
           <Box className='hidden md:flex w-full'>
             <div className='flex flex-row w-[75%] justify-center gap-x-12'>
-              {NavData.map((data) => (
-                <NavItem path={data.path} title={data.title} />
+              {NavData.map((data, key) => (
+                <NavItem key={key} path={data.path} title={data.title} />
               ))}
             </div>
             <div className='w-[25%] py-4 flex justify-end mr-8'>

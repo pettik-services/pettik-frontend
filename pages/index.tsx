@@ -12,7 +12,6 @@ const bannersData: BannerItemProps[] = [
   {
     desktopImage: Banner1,
     mobileImage: Banner1,
-    key: 1,
     content: {
       buttonText: "Shop Now",
       description: "test desc",

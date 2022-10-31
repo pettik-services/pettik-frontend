@@ -15,8 +15,9 @@ const FooterItems: React.FC<ItemProps> = ({ title, items }) => {
   return (
     <div className='flex flex-col items-center md:items-start gap-y-3'>
       <div className='font-bold text-lg'>{title}</div>
-      {items.map((item) => (
+      {items.map((item, idx) => (
         <Link
+          key={idx}
           href={item.href}
           className='text-white font-regular hover:text-primary-dark text-md'>
           {item.name}

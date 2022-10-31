@@ -10,6 +10,7 @@ type Props = {
   title: string;
   content: string;
   buttonText: string;
+  key?: number;
 };
 
 const ServiceItem: React.FC<Props> = ({
@@ -19,9 +20,10 @@ const ServiceItem: React.FC<Props> = ({
   content,
   title,
   buttonText,
+  key,
 }) => {
   return (
-    <div className="h-[70vh] flex flex-col relative items-center justify-end">
+    <div className="h-[70vh] flex flex-col relative items-center justify-end" key={key}>
         <Image alt='asa' src={image} className='absolute top-0'/>
         <div className={`h-[70%] rounded-[80px] border-4 border-black ${backgroundColor} flex flex-col items-center justify-center px-2`}>
             <div className="text-lg font-bold">{title}</div>    

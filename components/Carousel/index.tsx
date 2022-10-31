@@ -18,8 +18,8 @@ const CustomCarousel: React.FC<BannerProps> = (props) => {
       arrows={false}
       pauseOnHover
       className='z-0'>
-      {props.bannersData.map((banner) => (
-        <CarouselItem {...banner} />
+      {props.bannersData.map((banner, key) => (
+        <CarouselItem {...banner} key={key} />
       ))}
     </Slider>
   );
