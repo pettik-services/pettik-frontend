@@ -7,7 +7,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Logo from "../../assets/images/logo.png";
+import Logo from "../assets/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import Notification from "./NavBar/Notification";
