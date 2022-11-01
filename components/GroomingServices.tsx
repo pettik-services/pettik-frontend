@@ -58,7 +58,7 @@ const GroomingServices = () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 gap-y-6 text-center py-6 md:py-12">
       <div className="text-xl md:text-2xl font-bold text-black md:w-1/3">
-        Professional Grooming Services that put your pet's needs first
+        Professional Grooming Services that put your pet&apos;s needs first
       </div>
       <div className="w-full md:w-[80%] flex flex-col md:flex-row md:gap-12">
         {itemsData.map((item, idx) => (
