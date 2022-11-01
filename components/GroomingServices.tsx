@@ -15,26 +15,22 @@ const itemsData: ItemProps[] = [
   {
     image: ServiceImage1,
     title: "Breed Specific Haircut",
-    content: `Pettik's experienced groomers suggest 
-        speciality trims for each breed.`,
+    content: "Pettik's experienced groomers suggest speciality trims for each breed.",
   },
   {
     image: ServiceImage2,
     title: "Grooming Experts",
-    content: `Pettik certified and trained groomers 
-    for your little companions.`,
+    content: "Pettik certified and trained groomers for your little companions.",
   },
   {
     image: ServiceImage3,
     title: "Quality Products",
-    content: `A wide variety of tested 
-    products to ensure the best care.`,
+    content: "A wide variety of tested products to ensure the best care.",
   },
   {
     image: ServiceImage4,
     title: "High Convenience",
-    content: `Curate a package of the
-    services you need for your pet.`,
+    content: "Curate a package of the services you need for your pet.",
   },
 ];
 
