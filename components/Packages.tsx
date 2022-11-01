@@ -80,9 +80,13 @@ const PackageItem: React.FC<ItemProps> = ({
   return (
     <div className='flex flex-col items-center p-6 relative rounded-xl bg-gradient-to-b from-yellow to-white h-full shadow-xl'>
       <Image src={image} alt={title} className='w-[120px] h-[120px] mb-4' />
-      <div className='text-xl md:text-2xl font-nunito-black pb-4 text-center'>{title}</div>
-      {content.map((service) => (
-        <div className='w-full text-start px-4'>{service}</div>
+      <div className='text-xl md:text-2xl font-nunito-black pb-4 text-center'>
+        {title}
+      </div>
+      {content.map((service, idx) => (
+        <div className='w-full text-start px-4' key={idx}>
+          {service}
+        </div>
       ))}
       <div className='mb-12'></div>
       <div className='flex flex-row absolute bottom-6 left-0 w-full font-nunito-black text-xl md:text-2xl'>
