@@ -20,7 +20,7 @@ const Layout: React.FC<{ children: JSX.Element }> = ({ children }) => {
     <>
       <div className='flex flex-col'>
         <Header />
-        <div className='pt-[14%] md:pt-[8%]'>{children}</div>
+        <div className='pt-[14%] md:pt-[10%]'>{children}</div>
         <Footer />
         {!isTabletOrMobile && (
           <Box
