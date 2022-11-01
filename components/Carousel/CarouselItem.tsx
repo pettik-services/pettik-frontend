@@ -44,11 +44,20 @@ const CarouselItem: React.FC<BannerItemProps> = ({
           }`}>
           <div
             className={`${
-              alignContent === "center" ? "md:w-full" : "md:w-[40%]"
+              alignContent === "center" ? "md:w-full" : "md:w-[60%]"
             } ${
               alignContent === "left" ? "order-first" : "order-last"
-            } w-s h-full flex flex-col items-center justify-center px-12 py-4 md:px-0 md:py-0 gap-y-4`}>
-            <div className={`${content?.description? 'text-3xl': 'text-2xl md:text-5xl leading-relaxed'} w-[90%] md:w-1/3 font-nunito-black text-center`}>
+            } w-full h-full flex flex-col items-center justify-center px-12 py-4 md:px-0 md:py-0 gap-y-4`}>
+            <div
+              className={`${
+                content?.description
+                  ? "text-3xl"
+                  : "text-2xl md:text-5xl leading-relaxed"
+              } w-[90%] ${
+                alignContent === "center"
+                  ? "md:w-1/3 text-center"
+                  : "md:w-[90%] md:text-start text-center"
+              } font-nunito-black`}>
               {content?.title}
             </div>
             {content?.description && (
@@ -56,13 +65,18 @@ const CarouselItem: React.FC<BannerItemProps> = ({
                 {content.description}
               </div>
             )}
-            {content?.buttonText && (
-              <Link
-                href={href || "/"}
-                className='text-sm font-bold rounded-xl bg-grey px-6 py-2 text-primary-darker'>
-                {content.buttonText}
-              </Link>
-            )}
+            <div
+              className={`w-full flex px-12 ${
+                alignContent === "center" ? "items-center" : "justify-center md:justify-start"
+              }`}>
+              {content?.buttonText && (
+                <Link
+                  href={href || "/"}
+                  className='text-sm font-bold rounded-xl bg-primary-dark px-6 py-2 text-white shadow-md'>
+                  {content.buttonText}
+                </Link>
+              )}
+            </div>
           </div>
           <div
             className={`${
