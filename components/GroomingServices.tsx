@@ -4,23 +4,27 @@ import ServiceImage1 from "../assets/images/section1-image1.png";
 import ServiceImage2 from "../assets/images/section1-image2.png";
 import ServiceImage3 from "../assets/images/section1-image3.png";
 import ServiceImage4 from "../assets/images/section1-image4.png";
+import Button from "@mui/material/Button";
 
 type ItemProps = {
   image: string | StaticImageData;
   title: string;
   content: string;
+  index?: number;
 };
 
 const itemsData: ItemProps[] = [
   {
     image: ServiceImage1,
     title: "Breed Specific Haircut",
-    content: "Pettik's experienced groomers suggest speciality trims for each breed.",
+    content:
+      "Pettik's experienced groomers suggest speciality trims for each breed.",
   },
   {
     image: ServiceImage2,
     title: "Grooming Experts",
-    content: "Pettik certified and trained groomers for your little companions.",
+    content:
+      "Pettik certified and trained groomers for your little companions.",
   },
   {
     image: ServiceImage3,
@@ -34,10 +38,16 @@ const itemsData: ItemProps[] = [
   },
 ];
 
-const ServiceItem: React.FC<ItemProps> = ({ image, title, content }) => {
+const ServiceItem: React.FC<ItemProps> = ({ image, title, content, index }) => {
   return (
-    <div className='flex flex-col p-4 items-center justify-center gap-y-1 md:gap-y-3 text-center text-black'>
-      <Image src={image} alt={title} className='w-[200px] h-[200px] md:w-[200px]'/>
+    <div
+      className='flex flex-col p-4 items-center justify-center gap-y-1 md:gap-y-3 text-center text-black'
+      key={index}>
+      <Image
+        src={image}
+        alt={title}
+        className='w-[200px] h-[200px] md:w-[200px]'
+      />
       <div className='font-bold text-md'>{title}</div>
       <div className='text-sm'>{content}</div>
     </div>
@@ -51,10 +61,15 @@ const GroomingServices = () => {
         Professional Grooming Services that put your pet's needs first
       </div>
       <div className='w-full md:w-[80%] flex flex-col md:flex-row md:gap-12'>
-        {itemsData.map((item) => (
-          <ServiceItem {...item} />
+        {itemsData.map((item, idx) => (
+          <ServiceItem {...item} index={idx} />
         ))}
       </div>
+      <Button
+        variant='contained'
+        className='rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellow'>
+        BOOK NOW
+      </Button>
     </div>
   );
 };
