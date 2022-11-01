@@ -18,7 +18,7 @@ const itemsData: ItemProps[] = [
     image: ServiceImage1,
     title: "Breed Specific Haircut",
     content:
-      "Pettik's experienced groomers suggest speciality trims for each breed.",
+      "Pettik\'s experienced groomers suggest speciality trims for each breed.",
   },
   {
     image: ServiceImage2,
@@ -41,33 +41,33 @@ const itemsData: ItemProps[] = [
 const ServiceItem: React.FC<ItemProps> = ({ image, title, content, index }) => {
   return (
     <div
-      className='flex flex-col p-4 items-center justify-center gap-y-1 md:gap-y-3 text-center text-black'
+      className="flex flex-col p-4 items-center justify-center gap-y-1 md:gap-y-3 text-center text-black"
       key={index}>
       <Image
         src={image}
         alt={title}
-        className='w-[200px] h-[200px] md:w-[200px]'
+        className="w-[200px] h-[200px] md:w-[200px]"
       />
-      <div className='font-bold text-md'>{title}</div>
-      <div className='text-sm'>{content}</div>
+      <div className="font-bold text-md">{title}</div>
+      <div className="text-sm">{content}</div>
     </div>
   );
 };
 
 const GroomingServices = () => {
   return (
-    <div className='flex flex-col items-center justify-center px-6 gap-y-6 text-center py-6 md:py-12'>
-      <div className='text-xl md:text-2xl font-bold text-black md:w-1/3'>
+    <div className="flex flex-col items-center justify-center px-6 gap-y-6 text-center py-6 md:py-12">
+      <div className="text-xl md:text-2xl font-bold text-black md:w-1/3">
         Professional Grooming Services that put your pet's needs first
       </div>
-      <div className='w-full md:w-[80%] flex flex-col md:flex-row md:gap-12'>
+      <div className="w-full md:w-[80%] flex flex-col md:flex-row md:gap-12">
         {itemsData.map((item, idx) => (
-          <ServiceItem {...item} index={idx} />
+          <ServiceItem {...item} key={idx} index={idx} />
         ))}
       </div>
       <Button
-        variant='contained'
-        className='rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellow'>
+        variant="contained"
+        className="rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellow">
         BOOK NOW
       </Button>
     </div>
