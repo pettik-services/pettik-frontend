@@ -3,6 +3,7 @@ import CustomCarousel from "../components/Carousel";
 import Banner1 from "../assets/images/grooming-banner.png";
 import { BannerItemProps } from "../components/Carousel/CarouselItem";
 import GroomingServices from "../components/GroomingServices";
+import Packages from "../components/Packages";
 
 const bannersData: BannerItemProps[] = [
   {
@@ -22,6 +23,7 @@ const Grooming = () => {
     <div className='h-full flex flex-col gap-y-4 md:gap-y-12'>
       <CustomCarousel bannersData={bannersData} />
       <GroomingServices />
+      <Packages />
     </div>
   );
 };
