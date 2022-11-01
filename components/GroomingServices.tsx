@@ -18,7 +18,7 @@ const itemsData: ItemProps[] = [
     image: ServiceImage1,
     title: "Breed Specific Haircut",
     content:
-      "Pettik\'s experienced groomers suggest speciality trims for each breed.",
+      "Pettik&apos;s experienced groomers suggest speciality trims for each breed.",
   },
   {
     image: ServiceImage2,
