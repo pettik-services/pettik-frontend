@@ -1,8 +1,6 @@
 import React from "react";
-import Categories from "../components/Categories";
 import CustomCarousel from "../components/Carousel";
 import DownloadApp from "../components/DownloadApp";
-import OfferBanner from "../components/OfferBanner";
 import BlogHomePage from "../components/Blog/BlogHomePage";
 import Banner1 from "../assets/images/banner-1.png";
 import { BannerItemProps } from "../components/Carousel/CarouselItem";

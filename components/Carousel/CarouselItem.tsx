@@ -9,8 +9,8 @@ export type BannerItemProps = {
   href?: string;
   content?: {
     title: string;
-    description: string;
-    buttonText: string;
+    description?: string;
+    buttonText?: string;
   };
   color: "dark" | "light";
   alignContent: "left" | "right" | "center";
@@ -47,18 +47,22 @@ const CarouselItem: React.FC<BannerItemProps> = ({
               alignContent === "center" ? "md:w-full" : "md:w-[40%]"
             } ${
               alignContent === "left" ? "order-first" : "order-last"
-            } w-full h-full flex flex-col items-center justify-center px-12 py-4 md:px-0 md:py-0 gap-y-4`}>
-            <div className='text-3xl font-bold text-center'>
+            } w-s h-full flex flex-col items-center justify-center px-12 py-4 md:px-0 md:py-0 gap-y-4`}>
+            <div className={`${content?.description? 'text-3xl': 'text-2xl md:text-5xl leading-relaxed'} w-[90%] md:w-1/3 font-nunito-black text-center`}>
               {content?.title}
             </div>
-            <div className='text-xl font-regular text-center'>
-              {content?.description}
-            </div>
-            <Link
-              href={href || "/"}
-              className='text-sm font-bold rounded-xl bg-grey px-6 py-2 text-primary-darker'>
-              {content?.buttonText}
-            </Link>
+            {content?.description && (
+              <div className='text-xl font-regular text-center'>
+                {content.description}
+              </div>
+            )}
+            {content?.buttonText && (
+              <Link
+                href={href || "/"}
+                className='text-sm font-bold rounded-xl bg-grey px-6 py-2 text-primary-darker'>
+                {content.buttonText}
+              </Link>
+            )}
           </div>
           <div
             className={`${

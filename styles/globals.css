@@ -61,6 +61,10 @@
     font-family: 'sans-thin';
     src: url('../assets/fonts/sans-thin.ttf') format('truetype');
   }
+  @font-face {
+    font-family: 'nunito-black';
+    src: url('../assets/fonts/nunito-black.ttf') format('truetype');
+  }
   h6 {
       @apply font-bold
   }

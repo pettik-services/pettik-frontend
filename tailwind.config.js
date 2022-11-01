@@ -21,6 +21,7 @@ module.exports = {
       "semi-bold": ["sans-semi-bold"],
       "thin-italic": ["sans-thin-italic"],
       thin: ["sans-thin"],
+      "nunito-black": ["nunito-black"],
     },
     extend: {
       colors: {
