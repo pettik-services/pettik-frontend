@@ -9,6 +9,7 @@ type Props = {
   title: string;
   content: string;
   buttonText: string;
+  disabled?: boolean;
 };
 
 const ServiceItem: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const ServiceItem: React.FC<Props> = ({
   content,
   title,
   buttonText,
+  disabled = false,
 }) => {
   return (
     <div className='h-[500px] flex flex-col relative items-center justify-end'>
@@ -28,7 +30,9 @@ const ServiceItem: React.FC<Props> = ({
         <div className='pt-1'>{content}</div>
         <Link
           href={href}
-          className='absolute bottom-8 border-2 py-1 px-4 border-black bg-white text-black font-bold rounded-lg '>
+          className={`${
+            disabled && "pointer-events-none"
+          } absolute bottom-8 border-2 py-1 px-4 border-black bg-white text-black font-bold rounded-lg `}>
           {buttonText}
         </Link>
       </div>

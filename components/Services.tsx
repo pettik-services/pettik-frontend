@@ -11,7 +11,7 @@ const serviceData = [
     buttonText: "Click Here",
     content:
       "Personalized grooming packages can be enjoyed by your pets in the comforts of your own home. To help your pet look their best, set up a session.",
-    href: "/",
+    href: "/grooming",
     title: "PET GROOMING",
   },
   {
@@ -20,7 +20,7 @@ const serviceData = [
     buttonText: "Click Here",
     content:
       "Pet vaccinations is one of the important thing that every owner should take care of. We provide all type of vaccinations for your pet on your doorstep.",
-    href: "/",
+    href: "/vaccination",
     title: "PET VACCINATION",
   },
   {
@@ -31,6 +31,7 @@ const serviceData = [
       "Dogs of different shapes, sizes, and ages can receive training. Choose from advanced obedience, behavioural, and agility instruction or basic training for beginners.",
     href: "/",
     title: "PET TRANINIG",
+    disabled: true,
   },
 ];
 
