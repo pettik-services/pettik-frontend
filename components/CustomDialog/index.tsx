@@ -23,7 +23,6 @@ const CustomDialog: React.FC<Props> = ({
       onClose={handleClose}
       aria-labelledby='dailog-close-icon'
       open={open}
-      disableScrollLock
       className={`${className? className : 'p-8 rounded-2xl'}`}>
       {showHeader && <DailogCloseHeader id='dailog-close-icon' onClose={handleClose} />}
       <DialogContent dividers={false}>{children}</DialogContent>

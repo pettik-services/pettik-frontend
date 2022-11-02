@@ -31,14 +31,17 @@ const ResponsiveDialog: React.FC<Props> = ({
       aria-labelledby='responsive-dialog-title'
       PaperProps={{
         sx: {
-            borderRadius: fullScreen? '0px' : '16px'
-        }
-      }}
-      disableScrollLock>
+          borderRadius: fullScreen ? "0px" : "16px",
+        },
+      }}>
       {showHeader && (
         <DailogCloseHeader id='dailog-close-icon' onClose={handleClose} />
       )}
-      <DialogContent className={`${className? className: ''}`} dividers={false}>{children}</DialogContent>
+      <DialogContent
+        className={`${className ? className : ""}`}
+        dividers={false}>
+        {children}
+      </DialogContent>
     </Dialog>
   );
 };
