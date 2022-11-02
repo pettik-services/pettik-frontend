@@ -3,7 +3,6 @@ import BlogCard from "../components/Blog/BlogCard";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogs } from "./api/blogs";
 import Loader from "../components/Loader";
-import SnackBar from "../components/SnackBar";
 
 const Blog = () => {
   const {
