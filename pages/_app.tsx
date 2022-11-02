@@ -7,11 +7,13 @@ import {
   QueryClient,
   QueryClientProvider,
   QueryCache,
+  Hydrate,
 } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { AxiosError } from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const cache = createCache({
   key: "css",
@@ -22,6 +24,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(
     () =>
       new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: 1,
+          },
+        },
         queryCache: new QueryCache({
           onError: (error: any | AxiosError) =>
             toast.error(error?.message, {
@@ -40,10 +47,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <CacheProvider value={cache}>
-        {getLayout(<Component {...pageProps} />)}
-        <ToastContainer />
-      </CacheProvider>
+      <Hydrate state={pageProps.dehydratedState}>
+        <CacheProvider value={cache}>
+          {getLayout(<Component {...pageProps} />)}
+          <ToastContainer />
+        </CacheProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </Hydrate>
     </QueryClientProvider>
   );
 }
