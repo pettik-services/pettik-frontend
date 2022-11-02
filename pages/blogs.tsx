@@ -21,7 +21,7 @@ const Blog = () => {
         {blogs.blog_list.map((blog: any) => (
           <BlogCard
             image={blog.blogImage}
-            href='/'
+            href={`/blog/${blog.blogID}`}
             title={blog.blog_heading}
             key={blog.blogID}
           />
