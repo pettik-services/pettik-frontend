@@ -5,6 +5,12 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 @layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   @font-face {
       font-family: 'sans-bold';
       src: url('../assets/fonts/sans-bold.ttf') format('truetype');
@@ -82,4 +88,8 @@
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.hide-input {
+  -webkit-text-security: disc;
 }

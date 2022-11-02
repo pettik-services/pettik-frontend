@@ -9,7 +9,6 @@ const Blog = () => {
   const router = useRouter();
   const blogID =
     typeof router.query?.["slug"] === "string" ? router.query?.["slug"] : "";
-  console.log("query", blogID);
 
   const {
     isSuccess,

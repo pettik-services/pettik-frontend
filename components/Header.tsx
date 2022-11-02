@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -21,9 +21,65 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import GenerateOtpDialog from "./Auth/GenerateOtpDialog";
+import SubmitOtpDialog from "./Auth/SubmitOtpDialog";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const [openGenerateOTPDialog, setGenerateOTP] = useState(false);
+  const [openSubmitOTPDialog, setSubmitOTP] = useState(false);
+  const [otp, setOtp] = useState<string[]>(new Array(4).fill(""));
+  const [validationMessage, setMessage] = useState<{
+    phoneNumber?: string;
+    otp?: string;
+  }>({});
+
+  const [phoneNumber, setPhoneNumber] = useState<string>("");
+  const handleOpenGenerateOTP = () => {
+    setGenerateOTP(true);
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+  const handleCloseGenerateOTP = () => setGenerateOTP(false);
+
+  const handleOpenSubmitOTP = () => {
+    setSubmitOTP(true);
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+  const handleCloseSubmitOTP = () => setSubmitOTP(false);
+
+  const handleSubmitGenerateOTP = () => {
+    if (phoneNumber.length === 0) {
+      setMessage({
+        ...validationMessage,
+        phoneNumber: "Phone number should not be empty",
+      });
+      return;
+    } else if (phoneNumber.length !== 10) {
+      setMessage({
+        ...validationMessage,
+        phoneNumber: "Enter valid phone number",
+      });
+      return;
+    }
+    setMessage({ ...validationMessage, phoneNumber: "" });
+    handleCloseGenerateOTP();
+    handleOpenSubmitOTP();
+  };
+
+  const handleSubmitVerifyOTP = () => {
+    setMessage({ ...validationMessage, otp: "" });
+    if (otp.join("") !== "1234") {
+      setMessage({ ...validationMessage, otp: "Wrong OTP!" });
+      return;
+    }
+    toast.success("🐶 Login Successful! 🐶");
+    handleCloseSubmitOTP();
+  };
 
   return (
     <AppBar
@@ -58,6 +114,7 @@ const Header = () => {
                     number: "1234567790",
                   }}
                   isLoggedIn={false}
+                  handleOpenGenerateOTP={handleOpenGenerateOTP}
                 />
               )}
               getDrawerButton={(toggleDrawer) => (
@@ -89,12 +146,29 @@ const Header = () => {
                 <Button
                   variant='contained'
                   endIcon={<EastIcon />}
+                  onClick={handleOpenGenerateOTP}
                   className='rounded-lg py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
                   SIGN IN
                 </Button>
               </div>
             </div>
           </Box>
+          <GenerateOtpDialog
+            handleClose={handleCloseGenerateOTP}
+            open={openGenerateOTPDialog}
+            setPhoneNumber={setPhoneNumber}
+            handleSubmit={handleSubmitGenerateOTP}
+            validationMessage={validationMessage?.phoneNumber}
+          />
+          <SubmitOtpDialog
+            handleClose={handleCloseSubmitOTP}
+            open={openSubmitOTPDialog}
+            phoneNumber={phoneNumber}
+            handleSubmit={handleSubmitVerifyOTP}
+            validationMessage={validationMessage?.otp}
+            otp={otp}
+            setOtp={setOtp}
+          />
         </Toolbar>
       </Container>
     </AppBar>
@@ -140,9 +214,14 @@ type DrawerProps = {
     email: string;
     number: string;
   };
+  handleOpenGenerateOTP?: () => void;
 };
 
-const DrawerContent: React.FC<DrawerProps> = ({ isLoggedIn, account }) => {
+const DrawerContent: React.FC<DrawerProps> = ({
+  isLoggedIn,
+  account,
+  handleOpenGenerateOTP,
+}) => {
   return (
     <div className='w-full h-[100vh] flex flex-col'>
       {isLoggedIn && (
@@ -160,10 +239,11 @@ const DrawerContent: React.FC<DrawerProps> = ({ isLoggedIn, account }) => {
             </ListItem>
           ))}
           <Divider />
-          <ListItem className="flex items-center justify-center pt-8">
+          <ListItem className='flex items-center justify-center pt-8'>
             <Button
               variant='contained'
               endIcon={<EastIcon />}
+              onClick={handleOpenGenerateOTP}
               className='rounded-lg py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
               SIGN IN
             </Button>
