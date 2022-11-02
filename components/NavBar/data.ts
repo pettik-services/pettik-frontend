@@ -13,7 +13,7 @@ export const NavData = [
     },
     {
         title: 'Blog',
-        path: '/blogs',
+        path: '/blog',
     },
     {
         title: 'Become a Partner',
