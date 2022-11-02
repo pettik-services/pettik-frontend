@@ -14,6 +14,7 @@ import { AxiosError } from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { showErrorToast } from "../utils/toaster";
 
 const cache = createCache({
   key: "css",
@@ -31,16 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
         },
         queryCache: new QueryCache({
           onError: (error: any | AxiosError) =>
-            toast.error(error?.message, {
-              position: "bottom-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            }),
+            showErrorToast(error?.message),
         }),
       })
   );

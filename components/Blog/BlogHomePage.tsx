@@ -20,7 +20,7 @@ const BlogHomePage = () => {
       <div className='flex flex-col md:flex-row p-6 md:p-0 w-full md:w-[80%] gap-8 md:gap-12'>
         {isLoading
           ? [0, 1, 2].map((value, idx) => <BlogSkeleton key={idx} />)
-          : blogs.blog_list.map((blog: any, idx: number) => {
+          : blogs?.blog_list?.map((blog: any, idx: number) => {
               if (idx > 2) {
                 return null;
               }

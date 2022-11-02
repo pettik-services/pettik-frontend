@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Logo from "../assets/images/logo.png";
 import Image from "next/image";
@@ -23,19 +22,46 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import GenerateOtpDialog from "./Auth/GenerateOtpDialog";
 import SubmitOtpDialog from "./Auth/SubmitOtpDialog";
-import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
+import { generateOTP, verifyOTP } from "../pages/api/auth";
+import { AxiosError } from "axios";
+import { showInfoToast, showSuccessToast } from "../utils/toaster";
 
 const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [openGenerateOTPDialog, setGenerateOTP] = useState(false);
   const [openSubmitOTPDialog, setSubmitOTP] = useState(false);
   const [otp, setOtp] = useState<string[]>(new Array(4).fill(""));
+
+  const [isAuthenticated, setAuthenticated] = useState<boolean>(false);
+
   const [validationMessage, setMessage] = useState<{
     phoneNumber?: string;
     otp?: string;
   }>({});
-
   const [phoneNumber, setPhoneNumber] = useState<string>("");
+
+  const generateOTPMutation = useMutation({
+    mutationFn: generateOTP,
+    onSuccess: () => showSuccessToast("OTP sent successfully"),
+  });
+
+  const verifyOTPMutation = useMutation({
+    mutationFn: verifyOTP,
+    onSuccess: (data) => {
+      const { token, message } = data.data;
+      localStorage.setItem("auth-token-pettik", token || "");
+      localStorage.setItem("is-authenticated", "true");
+      setAuthenticated(true);
+      showSuccessToast(message);
+      handleCloseSubmitOTP();
+    },
+    onError: (data: AxiosError) => {
+      const response = data.response?.data as any;
+      setMessage({ ...validationMessage, otp: response?.message });
+    },
+  });
+
   const handleOpenGenerateOTP = () => {
     setGenerateOTP(true);
     if (typeof window != "undefined" && window.document) {
@@ -66,20 +92,29 @@ const Header = () => {
       });
       return;
     }
+
     setMessage({ ...validationMessage, phoneNumber: "" });
     handleCloseGenerateOTP();
+    generateOTPMutation.mutate(phoneNumber);
     handleOpenSubmitOTP();
   };
 
   const handleSubmitVerifyOTP = () => {
     setMessage({ ...validationMessage, otp: "" });
-    if (otp.join("") !== "1234") {
-      setMessage({ ...validationMessage, otp: "Wrong OTP!" });
-      return;
-    }
-    toast.success("🐶 Login Successful! 🐶");
-    handleCloseSubmitOTP();
+    verifyOTPMutation.mutate({ phone: phoneNumber, otp: otp.join("") });
   };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("auth-token-pettik");
+    localStorage.removeItem("is-authenticated");
+    setAuthenticated(false);
+    showInfoToast("Logged out successfully!");
+  };
+
+  useEffect(() => {
+    const isAuth = localStorage.getItem("is-authenticated" || "") === "true";
+    setAuthenticated(isAuth);
+  }, []);
 
   return (
     <AppBar
@@ -108,13 +143,9 @@ const Header = () => {
             <CustomSwipeableDrawer
               getDrawerContent={() => (
                 <DrawerContent
-                  account={{
-                    name: "Jhon Davis",
-                    email: "jhon@email.com",
-                    number: "1234567790",
-                  }}
-                  isLoggedIn={false}
+                  isAuthenticated={isAuthenticated}
                   handleOpenGenerateOTP={handleOpenGenerateOTP}
+                  handleSignOut={handleSignOut}
                 />
               )}
               getDrawerButton={(toggleDrawer) => (
@@ -136,19 +167,32 @@ const Header = () => {
             <Image src={Logo} alt='logo' className='w-14 h-14 p-1' />
           </Link>
           <Box className='hidden md:flex w-full'>
-            <div className='flex flex-row w-[75%] justify-center gap-x-12'>
+            <div className='flex flex-row w-[70%] justify-center gap-x-12'>
               {NavData.map((data, key) => (
                 <NavItem key={key} path={data.path} title={data.title} />
               ))}
             </div>
-            <div className='w-[25%] py-4 flex justify-end mr-8'>
+            <div className='w-[30%] py-4 flex justify-end mr-8 gap-2'>
+              {isAuthenticated && (
+                <div>
+                  <Button
+                    variant='contained'
+                    href='/dashboard'
+                    endIcon={<EastIcon />}
+                    className='rounded-lg py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
+                    Dashboard
+                  </Button>
+                </div>
+              )}
               <div>
                 <Button
                   variant='contained'
                   endIcon={<EastIcon />}
-                  onClick={handleOpenGenerateOTP}
+                  onClick={
+                    isAuthenticated ? handleSignOut : handleOpenGenerateOTP
+                  }
                   className='rounded-lg py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
-                  SIGN IN
+                  {isAuthenticated ? "SIGN OUT" : "SIGN IN"}
                 </Button>
               </div>
             </div>
@@ -176,60 +220,20 @@ const Header = () => {
 };
 export default Header;
 
-function stringToColor(string: string) {
-  let hash = 0;
-  let i;
-
-  /* eslint-disable no-bitwise */
-  for (i = 0; i < string.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  let color = "#";
-
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.slice(-2);
-  }
-  /* eslint-enable no-bitwise */
-
-  return color;
-}
-
-function stringAvatar(name: string) {
-  return {
-    sx: {
-      bgcolor: stringToColor(name),
-      width: 80,
-      height: 80,
-    },
-    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
-  };
-}
-
 type DrawerProps = {
-  isLoggedIn: boolean;
-  account?: {
-    name: string;
-    email: string;
-    number: string;
-  };
+  isAuthenticated: boolean;
   handleOpenGenerateOTP?: () => void;
+  handleSignOut: () => void;
 };
 
 const DrawerContent: React.FC<DrawerProps> = ({
-  isLoggedIn,
-  account,
+  isAuthenticated,
   handleOpenGenerateOTP,
+  handleSignOut,
 }) => {
   return (
     <div className='w-full h-[100vh] flex flex-col'>
-      {isLoggedIn && (
-        <div className='h-[40%] w-full rounded-br-[50%] bg-primary-dark p-6 flex flex-col items-start'>
-          <Avatar {...stringAvatar(account!.name)} />
-        </div>
-      )}
-      <div className={`${isLoggedIn ? "h-[60%]" : "h-full pt-8"} `}>
+      <div className={`${"h-full pt-8"} `}>
         <List>
           {NavData.map((item, index) => (
             <ListItem key={index} disablePadding>
@@ -239,14 +243,25 @@ const DrawerContent: React.FC<DrawerProps> = ({
             </ListItem>
           ))}
           <Divider />
-          <ListItem className='flex items-center justify-center pt-8'>
-            <Button
-              variant='contained'
-              endIcon={<EastIcon />}
-              onClick={handleOpenGenerateOTP}
-              className='rounded-lg py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
-              SIGN IN
-            </Button>
+          <ListItem className='flex flex-col items-center justify-center pt-8 gap-4 px-8'>
+            {isAuthenticated &&
+                <Button
+                  variant='contained'
+                  endIcon={<EastIcon />}
+                  href='/dashboard'
+                  className='rounded-lg py-2 w-full px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
+                  Dashboard
+                </Button>
+            }
+              <Button
+                variant='contained'
+                endIcon={<EastIcon />}
+                onClick={
+                  isAuthenticated ? handleSignOut : handleOpenGenerateOTP
+                }
+                className='rounded-lg w-full py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
+                {isAuthenticated ? "SIGN OUT" : "SIGN IN"}
+              </Button>
           </ListItem>
         </List>
       </div>
