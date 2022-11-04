@@ -95,11 +95,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ userDetails }) => {
     <div className='p-6 bg-grey-darker rounded-2xl flex flex-col md:flex-row gap-x-8  gap-y-8 items-center'>
       <Avatar
         alt='user image'
-        className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'
-        children={`${userDetails.name.split(" ")[0][0]}${
-          userDetails.name.split(" ")?.[1]?.[0]
-        }`}
-      />
+        className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
+        userDetails.name.split(" ")[0][0]
+      }${userDetails.name.split(" ")?.[1]?.[0]}`}</Avatar>
       <div className='flex flex-col uppercase text-sm font-semi-bold gap-y-3'>
         <div>NAME: {userDetails.name}</div>
         <div>EMAIL: {userDetails.email}</div>
@@ -119,8 +117,8 @@ const PetsProfile: React.FC<PetsProfileProps> = ({
 }) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-14'>
-      {petDetails?.map((pet: any) => {
-        return <PetCard petDetails={pet} />;
+      {petDetails?.map((pet: any, idx: number) => {
+        return <PetCard petDetails={pet} key={idx} />;
       })}
       <PetAddCard handleAddPetClick={handleAddPetClick} />
     </div>
@@ -148,12 +146,12 @@ const Address: React.FC<AddressProps> = ({
       return addressArray.join(", ");
     }) || [];
 
-  console.log("address", addresses);
-
   return (
     <div className='flex flex-col gap-y-4'>
-      {addresses.map((address: string) => (
-        <div className='p-6 bg-grey-darker rounded-2xl flex flex-col md:flex-row gap-x-8  gap-y-8 items-center'>
+      {addresses.map((address: string, idx: number) => (
+        <div
+          key={idx}
+          className='p-6 bg-grey-darker rounded-2xl flex flex-col md:flex-row gap-x-8  gap-y-8 items-center'>
           <Image
             alt='user image'
             className='h-20 md:h-12 w-20 md:w-12 rounded-full p-2  text-3xl bg-primary-light opacity-80 border-[3px] border-black'
@@ -175,17 +173,14 @@ interface PetCardProps {
 }
 
 const PetCard: React.FC<PetCardProps> = ({ petDetails }) => {
-  console.log("asds", petDetails.name.split(" "));
   return (
     <div className='p-6 bg-grey-darker rounded-2xl flex flex-col gap-y-8 items-center'>
       <div className='flex flex-col md:flex-row gap-8 items-center md:items-start'>
         <Avatar
           alt='user image'
-          className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'
-          children={`${petDetails.name.split(" ")[0][0]}${
-            petDetails.name.split(" ")?.[1]?.[0] || ""
-          }`}
-        />
+          className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
+          petDetails.name.split(" ")[0][0]
+        }${petDetails.name.split(" ")?.[1]?.[0] || ""}`}</Avatar>
         <div className='flex flex-col normal-case text-sm font-semi-bold gap-y-3'>
           <div>PET NAME: {petDetails.name}</div>
           <div>UNIQUE ID: {petDetails.pet_unique_id}</div>
