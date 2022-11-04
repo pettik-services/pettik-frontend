@@ -64,17 +64,17 @@ const Dashboard = () => {
         </div>
         <div className='py-6 md:py-4'>
           <TabPanel value={value} index={0}>
-            <UserProfile userDetails={user.data.userData.user_details} />
+            <UserProfile userDetails={user.data?.userData?.user_details} />
           </TabPanel>
           <TabPanel value={value} index={1}>
             <PetsProfile
-              petDetails={user.data.userData.pet_details}
+              petDetails={user.data?.userData?.pet_details}
               handleAddPetClick={handleAddPetClick}
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
             <Address
-              addressDetails={user.data.userData.user_details.address}
+              addressDetails={user.data?.userData?.user_details?.address}
               handleAddAddressClick={handleAddAddressClick}
             />
           </TabPanel>
@@ -96,11 +96,11 @@ const UserProfile: React.FC<UserProfileProps> = ({ userDetails }) => {
       <Avatar
         alt='user image'
         className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
-        userDetails.name.split(" ")[0][0]
-      }${userDetails.name.split(" ")?.[1]?.[0]}`}</Avatar>
+        userDetails?.name?.split?.(" ")?.[0]?.[0]
+      }${userDetails?.name?.split?.(" ")?.[1]?.[0]}`}</Avatar>
       <div className='flex flex-col uppercase text-sm font-semi-bold gap-y-3'>
-        <div>NAME: {userDetails.name}</div>
-        <div>EMAIL: {userDetails.email}</div>
+        <div>NAME: {userDetails?.name}</div>
+        <div>EMAIL: {userDetails?.email}</div>
       </div>
     </div>
   );
@@ -117,7 +117,7 @@ const PetsProfile: React.FC<PetsProfileProps> = ({
 }) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-14'>
-      {petDetails?.map((pet: any, idx: number) => {
+      {petDetails?.map?.((pet: any, idx: number) => {
         return <PetCard petDetails={pet} key={idx} />;
       })}
       <PetAddCard handleAddPetClick={handleAddPetClick} />
@@ -179,13 +179,13 @@ const PetCard: React.FC<PetCardProps> = ({ petDetails }) => {
         <Avatar
           alt='user image'
           className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
-          petDetails.name.split(" ")[0][0]
-        }${petDetails.name.split(" ")?.[1]?.[0] || ""}`}</Avatar>
+          petDetails?.name?.split?.(" ")?.[0]?.[0]
+        }${petDetails?.name?.split?.(" ")?.[1]?.[0] || ""}`}</Avatar>
         <div className='flex flex-col normal-case text-sm font-semi-bold gap-y-3'>
-          <div>PET NAME: {petDetails.name}</div>
-          <div>UNIQUE ID: {petDetails.pet_unique_id}</div>
-          <div>BREED: {petDetails.breed}</div>
-          <div>WEIGHT: {petDetails.weight}</div>
+          <div>PET NAME: {petDetails?.name}</div>
+          <div>UNIQUE ID: {petDetails?.pet_unique_id}</div>
+          <div>BREED: {petDetails?.breed}</div>
+          <div>WEIGHT: {petDetails?.weight}</div>
         </div>
       </div>
       <div className='flex flex-row gap-x-10'>
