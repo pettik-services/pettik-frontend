@@ -22,9 +22,9 @@ const Blog = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div className='flex flex-col items-center w-full justify-center py-12 md:pb-24 md:py-0 md:px-32 gap-y-8'>
-      <div className='text-4xl font-nunito-black'>{blog?.blog_heading}</div>
-      <img className='w-[40%] shadow-lg rounded-xl' src={blog?.blogImage} />
+    <div className='flex flex-col items-center w-full justify-center py-12 md:pb-24 md:py-0  px-6 md:px-32 gap-y-8'>
+      <div className='text-2xl text-center md:text-start md:text-4xl font-nunito-black'>{blog?.blog_heading}</div>
+      <img className='w-[85%] md:w-[40%] shadow-lg rounded-xl' src={blog?.blogImage} />
       <div
         className='text-md'
         dangerouslySetInnerHTML={{ __html: blog?.blog_data }}

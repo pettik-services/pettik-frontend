@@ -60,7 +60,7 @@ const GenerateOtpDialog: React.FC<Props> = ({
           <Button
             onClick={handleSubmit}
             variant='contained'
-            className='rounded-full w-full py-2 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellow'>
+            className='rounded-full w-full py-2 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellowNew'>
             CONTINUE
           </Button>
           <div>

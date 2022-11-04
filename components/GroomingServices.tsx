@@ -67,7 +67,7 @@ const GroomingServices = () => {
       </div>
       <Button
         variant="contained"
-        className="rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellow">
+        className="rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellowNew">
         BOOK NOW
       </Button>
     </div>

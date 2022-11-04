@@ -7,7 +7,7 @@ import GroomingImg from "../assets/images/pet-grooming.png";
 const serviceData = [
   {
     image: GroomingImg,
-    backgroundColor: "bg-yellow",
+    backgroundColor: "bg-yellowNew",
     buttonText: "Click Here",
     content:
       "Personalized grooming packages can be enjoyed by your pets in the comforts of your own home. To help your pet look their best, set up a session.",
@@ -25,7 +25,7 @@ const serviceData = [
   },
   {
     image: TrainingImg,
-    backgroundColor: "bg-yellow",
+    backgroundColor: "bg-yellowNew",
     buttonText: "Click Here",
     content:
       "Dogs of different shapes, sizes, and ages can receive training. Choose from advanced obedience, behavioural, and agility instruction or basic training for beginners.",

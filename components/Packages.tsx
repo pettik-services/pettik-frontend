@@ -78,7 +78,7 @@ const PackageItem: React.FC<ItemProps> = ({
   duration,
 }) => {
   return (
-    <div className='flex flex-col items-center p-6 relative rounded-xl bg-gradient-to-b from-yellow to-white h-full shadow-xl'>
+    <div className='flex flex-col items-center p-6 relative rounded-xl bg-gradient-to-b from-yellowNew to-white h-full shadow-xl'>
       <Image src={image} alt={title} className='w-[120px] h-[120px] mb-4' />
       <div className='text-xl md:text-2xl font-nunito-black pb-4 text-center'>
         {title}

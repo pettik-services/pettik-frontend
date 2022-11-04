@@ -26,6 +26,7 @@ import { useMutation } from "@tanstack/react-query";
 import { generateOTP, verifyOTP } from "../pages/api/auth";
 import { AxiosError } from "axios";
 import { showInfoToast, showSuccessToast } from "../utils/toaster";
+import { removeAuthorization, setAuthorization } from "../utils/axios";
 
 const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
@@ -55,6 +56,7 @@ const Header = () => {
       setAuthenticated(true);
       showSuccessToast(message);
       handleCloseSubmitOTP();
+      setAuthorization();
     },
     onError: (data: AxiosError) => {
       const response = data.response?.data as any;
@@ -108,6 +110,7 @@ const Header = () => {
     localStorage.removeItem("auth-token-pettik");
     localStorage.removeItem("is-authenticated");
     setAuthenticated(false);
+    removeAuthorization();
     showInfoToast("Logged out successfully!");
   };
 

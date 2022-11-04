@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import { apiConfig } from './config';
+import { AxiosResponse } from 'axios';
+import axios from '../../utils/axios';
 
 interface IUserResponse {
     isExistingUser: boolean,
@@ -33,11 +33,9 @@ interface IUserResponse {
     success: boolean
 }
 
-const apiServerProxyUrl = apiConfig.apiServerProxyUrl;
-
 export const generateOTP = (phone: string) =>
     axios
-        .post(`${apiServerProxyUrl}/generate`, {
+        .post(`/generate`, {
             phone
         });
 
@@ -47,15 +45,7 @@ export const verifyOTP = (data: { phone: string, otp: string }): Promise<AxiosRe
     message: string;
 }>> =>
     axios
-        .post(`${apiServerProxyUrl}/verify`, data);
+        .post(`/verify`, data);
 
-export const getUserData = (token: string): Promise<AxiosResponse<IUserResponse>> =>
-    axios.get(`${apiServerProxyUrl}/user/details/check`, {
-        headers: {
-            Authorization: token
-        }
-    }).then((data) => data)
-
-
-
-export default apiServerProxyUrl;
+export const getUserData = (): Promise<AxiosResponse<IUserResponse>> =>
+    axios.get(`/user/details/check`).then((data) => data)
