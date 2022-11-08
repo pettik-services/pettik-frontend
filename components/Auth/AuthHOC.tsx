@@ -23,4 +23,6 @@ const withAuth =
     return <Component {...props} isAuthenticated={isAuthenticated} />;
   };
 
+withAuth.displayName = "withAuth";
+
 export default withAuth;
