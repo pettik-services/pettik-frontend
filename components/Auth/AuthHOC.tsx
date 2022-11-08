@@ -5,6 +5,7 @@ export interface AuthProps {
   isAuthenticated: boolean;
 }
 
+/* eslint-disable react/display-name */
 const withAuth =
   <P extends object>(Component: React.ComponentType<P>) =>
   (props: P) => {
@@ -22,7 +23,5 @@ const withAuth =
 
     return <Component {...props} isAuthenticated={isAuthenticated} />;
   };
-
-withAuth.displayName = "withAuth";
 
 export default withAuth;
