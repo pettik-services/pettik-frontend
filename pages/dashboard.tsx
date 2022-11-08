@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { getUserData } from "./api/auth";
 import Loader from "../components/Loader";
 import {
@@ -16,10 +16,21 @@ import EditIcon from "@mui/icons-material/Edit";
 import AddSquare from "../assets/images/addsquare.svg";
 import HomeImage from "../assets/images/home.png";
 import Image from "next/image";
+import { deletePet } from "./api/user";
+import { showSuccessToast } from "../utils/toaster";
+import withAuth, { AuthProps } from "../components/Auth/AuthHOC";
 
-const Dashboard = () => {
-  const [isAuthenticated, setAuthenticated] = useState(false);
+const Dashboard: React.FC<AuthProps> = ({ isAuthenticated }) => {
   const [value, setValue] = React.useState(0);
+  const router = useRouter();
+
+  const deletePetMutation = useMutation({
+    mutationFn: deletePet,
+    onSuccess: () => {
+      showSuccessToast("Pet deleted successfully");
+      router.reload();
+    },
+  });
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -32,17 +43,29 @@ const Dashboard = () => {
   } = useQuery(["user-profile"], getUserData, {
     enabled: isAuthenticated,
   });
-  const router = useRouter();
-  useEffect(() => {
-    const isAuth = (localStorage.getItem("is-authenticated") || "") === "true";
-    setAuthenticated(isAuth);
-    if (!isAuth) {
-      router.push("/");
-    }
-  }, []);
 
-  const handleAddPetClick = () => {};
-  const handleAddAddressClick = () => {};
+  const handleAddPetClick = () => {
+    router.push("/dashboard/pet");
+  };
+  const handleEditPetClick = (petUniqueId: string) => {
+    router.push({
+      pathname: `/dashboard/pet`,
+      query: { isEdit: true, petUniqueId },
+    });
+  };
+  const handleDeletePetClick = (petUniqueId: string) => {
+    deletePetMutation.mutate({
+      pet: {
+        pet_unique_id: petUniqueId,
+      },
+    });
+  };
+  const handleEditUserClick = () => {
+    router.push("/dashboard/user");
+  };
+  const handleAddAddressClick = () => {
+    router.push("/dashboard/address");
+  };
 
   if (isLoading) return <Loader />;
 
@@ -64,12 +87,17 @@ const Dashboard = () => {
         </div>
         <div className='py-6 md:py-4'>
           <TabPanel value={value} index={0}>
-            <UserProfile userDetails={user.data?.userData?.user_details} />
+            <UserProfile
+              userDetails={user.data?.userData?.user_details}
+              handleEditUserClick={handleEditUserClick}
+            />
           </TabPanel>
           <TabPanel value={value} index={1}>
             <PetsProfile
               petDetails={user.data?.userData?.pet_details}
               handleAddPetClick={handleAddPetClick}
+              handleEditPetClick={handleEditPetClick}
+              handleDeletePetClick={handleDeletePetClick}
             />
           </TabPanel>
           <TabPanel value={value} index={2}>
@@ -82,22 +110,29 @@ const Dashboard = () => {
       </div>
     );
   }
+  return null;
 };
 
-export default Dashboard;
+export default withAuth(Dashboard);
 
 interface UserProfileProps {
   userDetails: any;
+  handleEditUserClick: () => void;
 }
 
-const UserProfile: React.FC<UserProfileProps> = ({ userDetails }) => {
+const UserProfile: React.FC<UserProfileProps> = ({
+  userDetails,
+  handleEditUserClick,
+}) => {
   return (
     <div className='p-6 bg-grey-darker rounded-2xl flex flex-col md:flex-row gap-x-8  gap-y-8 items-center'>
-      <Avatar
-        alt='user image'
-        className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
-        userDetails?.name?.split?.(" ")?.[0]?.[0]
-      }${userDetails?.name?.split?.(" ")?.[1]?.[0]}`}</Avatar>
+      <div className='hover:cursor-pointer' onClick={handleEditUserClick}>
+        <Avatar
+          alt='user image'
+          className='uppercase h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
+          userDetails?.name?.split?.(" ")?.[0]?.[0] || ""
+        }${userDetails?.name?.split?.(" ")?.[1]?.[0] || ""}`}</Avatar>
+      </div>
       <div className='flex flex-col uppercase text-sm font-semi-bold gap-y-3'>
         <div>NAME: {userDetails?.name}</div>
         <div>EMAIL: {userDetails?.email}</div>
@@ -109,16 +144,27 @@ const UserProfile: React.FC<UserProfileProps> = ({ userDetails }) => {
 interface PetsProfileProps {
   petDetails: any;
   handleAddPetClick: () => void;
+  handleEditPetClick: (petUniqueId: string) => void;
+  handleDeletePetClick: (petUniqueId: string) => void;
 }
 
 const PetsProfile: React.FC<PetsProfileProps> = ({
   petDetails,
   handleAddPetClick,
+  handleEditPetClick,
+  handleDeletePetClick,
 }) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-14'>
       {petDetails?.map?.((pet: any, idx: number) => {
-        return <PetCard petDetails={pet} key={idx} />;
+        return (
+          <PetCard
+            petDetails={pet}
+            key={idx}
+            handleEditPetClick={handleEditPetClick}
+            handleDeletePetClick={handleDeletePetClick}
+          />
+        );
       })}
       <PetAddCard handleAddPetClick={handleAddPetClick} />
     </div>
@@ -170,15 +216,21 @@ const Address: React.FC<AddressProps> = ({
 
 interface PetCardProps {
   petDetails: any;
+  handleEditPetClick: (petUniqueId: string) => void;
+  handleDeletePetClick: (petUniqueId: string) => void;
 }
 
-const PetCard: React.FC<PetCardProps> = ({ petDetails }) => {
+const PetCard: React.FC<PetCardProps> = ({
+  petDetails,
+  handleEditPetClick,
+  handleDeletePetClick,
+}) => {
   return (
     <div className='p-6 bg-grey-darker rounded-2xl flex flex-col gap-y-8 items-center'>
       <div className='flex flex-col md:flex-row gap-8 items-center md:items-start'>
         <Avatar
           alt='user image'
-          className='h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
+          className='uppercase h-24 w-24 text-3xl bg-primary-light text-black opacity-80 border-[3px] border-black'>{`${
           petDetails?.name?.split?.(" ")?.[0]?.[0]
         }${petDetails?.name?.split?.(" ")?.[1]?.[0] || ""}`}</Avatar>
         <div className='flex flex-col normal-case text-sm font-semi-bold gap-y-3'>
@@ -192,14 +244,14 @@ const PetCard: React.FC<PetCardProps> = ({ petDetails }) => {
         <Button
           variant='contained'
           startIcon={<DeleteIcon />}
-          onClick={() => {}}
+          onClick={() => handleDeletePetClick(petDetails?.pet_unique_id)}
           className='rounded-lg py-2 px-8 bg-red-200 shadow-none text-red-600  font-bold text-sm hover:text-white hover:bg-red-600'>
           DELETE
         </Button>
         <Button
           variant='contained'
           startIcon={<EditIcon />}
-          onClick={() => {}}
+          onClick={() => handleEditPetClick(petDetails?.pet_unique_id)}
           className='rounded-lg py-2 px-8 bg-yellow-200 shadow-none text-yellow-600  font-bold text-sm hover:text-white hover:bg-yellow-600'>
           EDIT
         </Button>
@@ -218,7 +270,7 @@ const PetAddCard: React.FC<PetAddCardProps> = ({ handleAddPetClick }) => {
       <Image src={AddSquare} alt='add pet' className='w-[30%]' />
       <Button
         variant='contained'
-        onClick={() => {}}
+        onClick={handleAddPetClick}
         className='rounded-lg py-2 px-8 bg-primary-light shadow-none text-black  font-bold text-sm hover:text-white hover:bg-primary-dark'>
         ADD PET
       </Button>
