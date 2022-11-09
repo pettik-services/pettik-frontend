@@ -21,14 +21,6 @@ const steps = [
   "Final Review",
 ];
 
-const content = [
-  <div>Select Pet content</div>,
-  <div>Select Vaccine content</div>,
-  <div>Select Address content</div>,
-  <div>Select date and time content</div>,
-  <div>final review content</div>,
-];
-
 const BookVaccination = () => {
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
