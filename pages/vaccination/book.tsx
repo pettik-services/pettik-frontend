@@ -66,7 +66,7 @@ const BookVaccination = () => {
       vaccine: vaccineNames,
       pet_name: values?.pet?.name,
       pet_unique_id: values?.pet?.pet_unique_id,
-      cost: totalCost,
+      cost: totalCost.toString(),
       pet_address: address,
       time: values?.dateTime?.time?.from,
       date: values?.dateTime?.date,
