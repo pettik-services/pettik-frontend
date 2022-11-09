@@ -163,7 +163,6 @@ const PetUpdateForm: React.FC<FormProps> = ({
         pet_dob: values.petDob,
       },
     };
-    console.log("submitting", isEdit, payload);
     handleSubmit(payload);
   };
 

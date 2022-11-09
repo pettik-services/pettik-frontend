@@ -16,7 +16,7 @@ const bannersData: BannerItemProps[] = [
     color: "dark",
     alignContent: "left",
     showContent: true,
-    href: "/",
+    href: "/vaccination/book",
   },
 ];
 
@@ -27,6 +27,7 @@ const Vaccination = () => {
       <div className='py-6 w-full flex justify-center'>
         <Button
           variant='contained'
+          href="/vaccination/book"
           className='rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellowNew'>
           BOOK VACCINATION
         </Button>

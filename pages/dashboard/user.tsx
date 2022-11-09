@@ -73,7 +73,6 @@ const UserUpdateForm: React.FC<FormProps> = ({ userDetails, handleSubmit }) => {
     email: null,
   });
   useEffect(() => {
-    console.log("user details user", userDetails);
     if (userDetails) {
       setValues({
         ...values,
