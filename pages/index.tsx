@@ -12,12 +12,14 @@ const bannersData: BannerItemProps[] = [
     mobileImage: Banner1,
     content: {
       buttonText: "SCHEDULE NOW",
-      description: "Let us treat your pet like our family with best service and special package",
+      description:
+        "Let us treat your pet like our family with best service and special package",
       title: "Your Pet is part of our family",
     },
     color: "dark",
     alignContent: "center",
     showContent: true,
+    href: "/grooming/book",
   },
 ];
 
