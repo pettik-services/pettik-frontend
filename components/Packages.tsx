@@ -71,7 +71,7 @@ export const PackageItem: React.FC<ItemProps> = ({
         <div className='mb-12'></div>
       </div>
       <div className='flex flex-col w-full gap-y-8'>
-        <div className='flex flex-row w-full font-nunito-black text-xl md:text-2xl'>
+        <div className='flex flex-row w-full font-nunito-black text-xl md:text-xl'>
           <div className='w-1/2 flex  ml-6 justify-start'>{price}</div>
           <div className='w-1/2 flex justify-end mr-6'>{duration}</div>
         </div>
