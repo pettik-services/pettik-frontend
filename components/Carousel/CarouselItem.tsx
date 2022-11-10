@@ -47,11 +47,11 @@ const CarouselItem: React.FC<BannerItemProps> = ({
               alignContent === "center" ? "md:w-full" : "md:w-[60%]"
             } ${
               alignContent === "left" ? "order-first" : "order-last"
-            } w-full h-full flex flex-col items-center justify-center px-12 py-4 md:px-0 md:py-0 gap-y-4`}>
+            } w-full h-full flex flex-col items-center justify-center px-8 py-4 md:px-0 md:py-0 gap-y-2 md:gap-y-4`}>
             <div
               className={`${
                 content?.description
-                  ? "text-3xl"
+                  ? "text-3xl md:text-5xl"
                   : "text-2xl md:text-5xl leading-relaxed"
               } w-[90%] ${
                 alignContent === "center"
@@ -61,13 +61,13 @@ const CarouselItem: React.FC<BannerItemProps> = ({
               {content?.title}
             </div>
             {content?.description && (
-              <div className='text-xl font-regular text-center'>
+              <div className='text-lg md:text-xl font-regular text-center w-full md:w-[40%]'>
                 {content.description}
               </div>
             )}
             <div
               className={`w-full flex px-12 ${
-                alignContent === "center" ? "items-center" : "justify-center md:justify-start"
+                alignContent === "center" ? "items-center justify-center" : "justify-center md:justify-start"
               }`}>
               {content?.buttonText && (
                 <Link

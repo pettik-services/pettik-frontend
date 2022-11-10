@@ -11,13 +11,13 @@ const bannersData: BannerItemProps[] = [
     desktopImage: Banner1,
     mobileImage: Banner1,
     content: {
-      buttonText: "Shop Now",
-      description: "test desc",
-      title: "welcome to pet shop",
+      buttonText: "SCHEDULE NOW",
+      description: "Let us treat your pet like our family with best service and special package",
+      title: "Your Pet is part of our family",
     },
     color: "dark",
-    alignContent: "right",
-    showContent: false,
+    alignContent: "center",
+    showContent: true,
   },
 ];
 
