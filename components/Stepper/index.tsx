@@ -11,6 +11,7 @@ interface Props {
     handleBack: () => void,
     handleNext: () => void
   ) => JSX.Element;
+  title?: string;
 }
 
 const CustomStepper: React.FC<Props> = ({
@@ -18,6 +19,7 @@ const CustomStepper: React.FC<Props> = ({
   completed,
   setCompleted,
   getFrom,
+  title,
 }) => {
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -70,6 +72,7 @@ const CustomStepper: React.FC<Props> = ({
 
   return (
     <div className='w-full flex flex-col px-6 md:px-12 gap-y-6'>
+      {title && <div>{title}</div>}
       <div className='w-full md:w-1/2'>
         <Stepper activeStep={activeStep} connector={<div></div>}>
           {steps.map((label, index) => (

@@ -84,6 +84,7 @@ const BookVaccination = () => {
       <div className='pb-0 md:pb-12 py-12 md:py-0 min-h-screen'>
         <CustomStepper
           steps={steps}
+          title={"Complete the vaccination booking in 5 simple steps"}
           getFrom={(activeStep: number, handleBack, handleNext) => (
             <VaccinationFrom
               activeStep={activeStep}

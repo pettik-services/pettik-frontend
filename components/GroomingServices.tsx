@@ -67,6 +67,7 @@ const GroomingServices = () => {
       </div>
       <Button
         variant="contained"
+        href="/grooming/book"
         className="rounded-xl py-3 px-10 bg-primary-dark text-white shadow-none  font-bold text-sm hover:bg-yellowNew">
         BOOK NOW
       </Button>
