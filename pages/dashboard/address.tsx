@@ -24,6 +24,7 @@ const AddressDetailsForm: React.FC<Props> = ({}) => {
 
   const handleSubmit = (payload: any) => {
     updateUserMutation.mutate(payload);
+    router.push('/dashboard')
   };
   return (
     <div className='flex flex-row items-center justify-center pb-12'>

@@ -125,7 +125,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
   handleEditUserClick,
 }) => {
   return (
-    <div className='p-6 bg-grey-darker rounded-2xl flex flex-col md:flex-row gap-x-8  gap-y-8 items-center'>
+    <div className='p-6 bg-grey-darker rounded-2xl flex flex-col md:flex-row gap-x-8  gap-y-8 items-center relative'>
       <div className='hover:cursor-pointer' onClick={handleEditUserClick}>
         <Avatar
           alt='user image'
@@ -136,6 +136,9 @@ const UserProfile: React.FC<UserProfileProps> = ({
       <div className='flex flex-col uppercase text-sm font-semi-bold gap-y-3'>
         <div>NAME: {userDetails?.name}</div>
         <div>EMAIL: {userDetails?.email}</div>
+      </div>
+      <div className='absolute top-4 right-4 hover:cursor-pointer' onClick={handleEditUserClick}>
+        <EditIcon fontSize='small' />
       </div>
     </div>
   );

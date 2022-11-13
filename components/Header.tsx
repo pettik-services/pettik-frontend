@@ -27,12 +27,14 @@ import { generateOTP, verifyOTP } from "../pages/api/auth";
 import { AxiosError } from "axios";
 import { showInfoToast, showSuccessToast } from "../utils/toaster";
 import { removeAuthorization, setAuthorization } from "../utils/axios";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const [openGenerateOTPDialog, setGenerateOTP] = useState(false);
   const [openSubmitOTPDialog, setSubmitOTP] = useState(false);
   const [otp, setOtp] = useState<string[]>(new Array(4).fill(""));
+  const router = useRouter();
 
   const [isAuthenticated, setAuthenticated] = useState<boolean>(false);
 
@@ -112,6 +114,7 @@ const Header = () => {
     setAuthenticated(false);
     removeAuthorization();
     showInfoToast("Logged out successfully!");
+    router.push("/");
   };
 
   useEffect(() => {
@@ -247,24 +250,22 @@ const DrawerContent: React.FC<DrawerProps> = ({
           ))}
           <Divider />
           <ListItem className='flex flex-col items-center justify-center pt-8 gap-4 px-8'>
-            {isAuthenticated &&
-                <Button
-                  variant='contained'
-                  endIcon={<EastIcon />}
-                  href='/dashboard'
-                  className='rounded-lg py-2 w-full px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
-                  Dashboard
-                </Button>
-            }
+            {isAuthenticated && (
               <Button
                 variant='contained'
                 endIcon={<EastIcon />}
-                onClick={
-                  isAuthenticated ? handleSignOut : handleOpenGenerateOTP
-                }
-                className='rounded-lg w-full py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
-                {isAuthenticated ? "SIGN OUT" : "SIGN IN"}
+                href='/dashboard'
+                className='rounded-lg py-2 w-full px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
+                Dashboard
               </Button>
+            )}
+            <Button
+              variant='contained'
+              endIcon={<EastIcon />}
+              onClick={isAuthenticated ? handleSignOut : handleOpenGenerateOTP}
+              className='rounded-lg w-full py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
+              {isAuthenticated ? "SIGN OUT" : "SIGN IN"}
+            </Button>
           </ListItem>
         </List>
       </div>

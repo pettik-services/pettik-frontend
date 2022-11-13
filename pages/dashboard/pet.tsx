@@ -10,6 +10,11 @@ import Cat from "../../assets/images/cat.png";
 import Dog from "../../assets/images/dog.png";
 import Image from "next/image";
 import Button from "@mui/material/Button";
+import CustomSelect from "../../components/CustomSelect";
+import { BreedResponse, getCatBreeds, getDogBreeds } from "../api/data";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import dayjs from "dayjs";
 
 interface Props {
   handleSubmit: (payload: any) => void;
@@ -26,6 +31,16 @@ const PetDetailsForm: React.FC<Props> = ({}) => {
     isLoading,
   } = useQuery(["user-profile"], getUserData, {
     enabled: fetchPet,
+  });
+
+  const { data: dogBreeds } = useQuery(["dog-breeds"], getDogBreeds, {
+    enabled: true,
+    retry: 1,
+  });
+
+  const { data: catBreeds } = useQuery(["cat-breeds"], getCatBreeds, {
+    enabled: true,
+    retry: 1,
   });
 
   useEffect(() => {
@@ -58,6 +73,8 @@ const PetDetailsForm: React.FC<Props> = ({}) => {
           petDetails={petDetails}
           isEdit={true}
           handleSubmit={handleSubmit}
+          catBreeds={(catBreeds || []) as BreedResponse[]}
+          dogBreeds={(dogBreeds || []) as BreedResponse[]}
         />
       </div>
     );
@@ -65,7 +82,11 @@ const PetDetailsForm: React.FC<Props> = ({}) => {
 
   return (
     <div className='flex flex-row items-center justify-center pb-12'>
-      <PetUpdateForm handleSubmit={handleSubmit} />
+      <PetUpdateForm
+        handleSubmit={handleSubmit}
+        catBreeds={(catBreeds || []) as BreedResponse[]}
+        dogBreeds={(dogBreeds || []) as BreedResponse[]}
+      />
     </div>
   );
 };
@@ -76,24 +97,28 @@ interface FormProps {
   petDetails?: any;
   isEdit?: boolean;
   handleSubmit: (payload: any) => void;
+  dogBreeds?: BreedResponse[];
+  catBreeds?: BreedResponse[];
 }
 
 const PetUpdateForm: React.FC<FormProps> = ({
   isEdit = false,
   petDetails,
   handleSubmit,
+  dogBreeds,
+  catBreeds,
 }) => {
   const [values, setValues] = useState<{
     petType: string | null;
     petName: string | null;
-    petDob: string | null;
+    petDob: string;
     petGender: string | null;
     petBreed: string | null;
     petWeight: string | null;
   }>({
     petType: null,
     petName: null,
-    petDob: null,
+    petDob: dayjs().format("DD MMMM YYYY"),
     petGender: null,
     petBreed: null,
     petWeight: null,
@@ -175,6 +200,11 @@ const PetUpdateForm: React.FC<FormProps> = ({
       return false;
     }
     return true;
+  };
+
+  const handlePetBreedChange = (selectedValue: any) => {
+    setValidatonErrors({ ...validationErrors, petBreed: null });
+    setValues({ ...values, petBreed: selectedValue?.label });
   };
 
   return (
@@ -259,15 +289,17 @@ const PetUpdateForm: React.FC<FormProps> = ({
       </div>
       <div className='flex flex-col gap-1 w-full'>
         <div>Select Pet Breed</div>
-        <input
-          type={"text"}
-          placeholder={"Pet Breed"}
-          onChange={(e) => {
-            setValidatonErrors({ ...validationErrors, petBreed: null });
-            setValues({ ...values, petBreed: e.target.value });
-          }}
-          value={values.petBreed ? values.petBreed : ""}
-          className={`px-4 py-3 bg-white rounded-lg placeholder:text-gray-400 text-black placeholder:font-light font-light outline-none text-sm`}
+        <CustomSelect
+          placeholderText='Select Pet Breed'
+          handleChange={handlePetBreedChange}
+          noOptionsMessage='Please select pet type!'
+          options={
+            values?.petType === "dog"
+              ? dogBreeds || []
+              : values?.petType === "cat"
+              ? catBreeds || []
+              : []
+          }
         />
         {validationErrors.petBreed && (
           <div className='text-red-400 text-xs'>
@@ -277,15 +309,17 @@ const PetUpdateForm: React.FC<FormProps> = ({
       </div>
       <div className='flex flex-col gap-1 w-full'>
         <div>Enter your Pet DOB</div>
-        <input
-          type={"text"}
-          placeholder={"Pet DOB"}
-          onChange={(e) => {
+        <DatePicker
+          selected={dayjs(values?.petDob).toDate()}
+          onChange={(date: Date) => {
+            setValues({
+              ...values,
+              petDob: dayjs(date).format("DD MMMM YYYY"),
+            });
             setValidatonErrors({ ...validationErrors, petDob: null });
-            setValues({ ...values, petDob: e.target.value });
           }}
-          value={values.petDob ? values.petDob : ""}
-          className={`px-4 py-3 bg-white rounded-lg placeholder:text-gray-400 text-black placeholder:font-light font-light outline-none text-sm`}
+          dateFormat='dd MMMM yyyy'
+          className='w-full font-light placeholder:text-gray-400 px-4 py-3 bg-white rounded-lg'
         />
         {validationErrors.petDob && (
           <div className='text-red-400 text-xs'>{validationErrors.petDob}</div>
