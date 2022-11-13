@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 
-interface OptionProps {
+export interface OptionProps {
   label: string;
   value: string;
 }
@@ -11,6 +11,7 @@ interface Props {
   options: OptionProps[];
   noOptionsMessage?: string;
   placeholderText?: string;
+  value?: OptionProps | null;
 }
 
 const CustomSelect: React.FC<Props> = ({
@@ -18,9 +19,11 @@ const CustomSelect: React.FC<Props> = ({
   options,
   noOptionsMessage,
   placeholderText = "Enter value",
+  value = null,
 }) => {
   return (
     <Select
+      value={value}
       noOptionsMessage={({ inputValue }) =>
         !inputValue ? noOptionsMessage || "No data" : "No results found"
       }

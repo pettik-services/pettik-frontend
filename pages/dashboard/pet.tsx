@@ -10,7 +10,7 @@ import Cat from "../../assets/images/cat.png";
 import Dog from "../../assets/images/dog.png";
 import Image from "next/image";
 import Button from "@mui/material/Button";
-import CustomSelect from "../../components/CustomSelect";
+import CustomSelect, { OptionProps } from "../../components/CustomSelect";
 import { BreedResponse, getCatBreeds, getDogBreeds } from "../api/data";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -33,12 +33,20 @@ const PetDetailsForm: React.FC<Props> = ({}) => {
     enabled: fetchPet,
   });
 
-  const { data: dogBreeds } = useQuery(["dog-breeds"], getDogBreeds, {
+  const {
+    data: dogBreeds,
+    isLoading: isDogBreedLoading,
+    isSuccess: isDogBreedSuccess,
+  } = useQuery(["dog-breeds"], getDogBreeds, {
     enabled: true,
     retry: 1,
   });
 
-  const { data: catBreeds } = useQuery(["cat-breeds"], getCatBreeds, {
+  const {
+    data: catBreeds,
+    isLoading: isCatBreedLoading,
+    isSuccess: isCatBreedSuccess,
+  } = useQuery(["cat-breeds"], getCatBreeds, {
     enabled: true,
     retry: 1,
   });
@@ -59,9 +67,16 @@ const PetDetailsForm: React.FC<Props> = ({}) => {
     router.push("/dashboard");
   };
 
-  if (isLoading && (isEdit || "") === "true") return <Loader />;
+  if (
+    (isLoading || isCatBreedLoading || isDogBreedLoading) &&
+    (isEdit || "") === "true"
+  )
+    return <Loader />;
 
-  if (isSuccess && (isEdit || "") === "true") {
+  if (
+    isSuccess &&
+    (isEdit || "") === "true"
+  ) {
     const pets = user.data?.userData?.pet_details || [];
     const petDetails = pets.filter(
       (pet) => pet.pet_unique_id === petUniqueId
@@ -108,6 +123,9 @@ const PetUpdateForm: React.FC<FormProps> = ({
   dogBreeds,
   catBreeds,
 }) => {
+  const [defaultBreedValue, setBreedValue] = useState<
+    OptionProps | null | undefined
+  >(null);
   const [values, setValues] = useState<{
     petType: string | null;
     petName: string | null;
@@ -140,6 +158,20 @@ const PetUpdateForm: React.FC<FormProps> = ({
   });
   useEffect(() => {
     if (isEdit) {
+      const petType = petDetails?.type?.toLowerCase();
+      if (petType === "dog") {
+        const breed = dogBreeds?.filter(
+          (dog) =>
+            petDetails?.breed?.toLowerCase() === dog?.label?.toLowerCase()
+        );
+        setBreedValue(breed?.[0]);
+      } else {
+        const breed = catBreeds?.filter(
+          (cat) =>
+            petDetails?.breed?.toLowerCase() === cat?.label?.toLowerCase()
+        );
+        setBreedValue(breed?.[0]);
+      }
       setValues({
         ...values,
         petBreed: petDetails?.breed,
@@ -204,6 +236,7 @@ const PetUpdateForm: React.FC<FormProps> = ({
 
   const handlePetBreedChange = (selectedValue: any) => {
     setValidatonErrors({ ...validationErrors, petBreed: null });
+    setBreedValue(selectedValue);
     setValues({ ...values, petBreed: selectedValue?.label });
   };
 
@@ -213,7 +246,12 @@ const PetUpdateForm: React.FC<FormProps> = ({
       <div className='flex flex-row gap-12'>
         <div
           className='flex flex-col items-center gap-2 hover:cursor-pointer '
-          onClick={() => setValues({ ...values, petType: "dog" })}>
+          onClick={() => {
+            if (values?.petType !== "dog") {
+              setValues({ ...values, petType: "dog", petBreed: null });
+              setBreedValue(null);
+            }
+          }}>
           <Image
             src={Dog}
             alt='dog'
@@ -227,7 +265,12 @@ const PetUpdateForm: React.FC<FormProps> = ({
         </div>
         <div
           className='flex flex-col items-center gap-2 hover:cursor-pointer '
-          onClick={() => setValues({ ...values, petType: "cat" })}>
+          onClick={() => {
+            if (values?.petType !== "cat") {
+              setValues({ ...values, petType: "cat", petBreed: null });
+              setBreedValue(null);
+            }
+          }}>
           <Image
             src={Cat}
             alt='cat'
@@ -290,6 +333,7 @@ const PetUpdateForm: React.FC<FormProps> = ({
       <div className='flex flex-col gap-1 w-full'>
         <div>Select Pet Breed</div>
         <CustomSelect
+          value={defaultBreedValue}
           placeholderText='Select Pet Breed'
           handleChange={handlePetBreedChange}
           noOptionsMessage='Please select pet type!'
