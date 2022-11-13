@@ -19,11 +19,17 @@ const withAuth =
       setAuthenticated(isAuth);
       if (!isAuth) {
         router.push("/");
-        showErrorToast('You are not logged in!')
+        showErrorToast("You are not logged in!");
       }
     }, []);
 
-    return <Component {...props} isAuthenticated={isAuthenticated} />;
+    return (
+      <>
+        {isAuthenticated && (
+          <Component {...props} isAuthenticated={isAuthenticated} />
+        )}
+      </>
+    );
   };
 
 export default withAuth;
