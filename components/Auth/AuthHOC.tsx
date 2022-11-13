@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { showErrorToast } from "../../utils/toaster";
 
 export interface AuthProps {
   isAuthenticated: boolean;
@@ -18,6 +19,7 @@ const withAuth =
       setAuthenticated(isAuth);
       if (!isAuth) {
         router.push("/");
+        showErrorToast('You are not logged in!')
       }
     }, []);
 

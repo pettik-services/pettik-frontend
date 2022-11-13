@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import withAuth from "../../components/Auth/AuthHOC";
+import withAuth, { AuthProps } from "../../components/Auth/AuthHOC";
 import Loader from "../../components/Loader";
 import SelectAddressElement from "../../components/SelectAddress";
 import SelectDateTimeElement from "../../components/SelectDateTime";
@@ -21,7 +21,7 @@ const steps = [
   "Final Review",
 ];
 
-const BookVaccination = () => {
+const BookVaccination: React.FC<AuthProps> = ({ isAuthenticated }) => {
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
@@ -38,13 +38,15 @@ const BookVaccination = () => {
     data: user,
     isSuccess,
     isLoading,
-  } = useQuery(["user-profile"], getUserData);
+  } = useQuery(["user-profile"], getUserData, { enabled: !!isAuthenticated });
 
   const {
     data: vaccinations,
     isSuccess: isVaccinationSuccess,
     isLoading: isVaccinationLoading,
-  } = useQuery(["vaccination"], getVaccinationData);
+  } = useQuery(["vaccination"], getVaccinationData, {
+    enabled: !!isAuthenticated,
+  });
 
   const bookVaccineMutation = useMutation({
     mutationFn: bookVaccination,
