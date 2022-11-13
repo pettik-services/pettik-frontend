@@ -66,9 +66,10 @@ const SelectVaccineElement: React.FC<Props> = ({
 }) => {
   const petType = values?.pet?.type?.toLowerCase();
   const availableVaccines =
-    vaccinationDetails.filter(
-      (vaccine: any) => vaccine?.service_for?.toLowerCase() === petType
-    ) || [];
+    vaccinationDetails.filter((vaccine: any) => {
+      const check = vaccine?.service_for?.toLowerCase() === petType;
+      return true;
+    }) || [];
 
   const handleSelect = (vaccine: any) => {
     setValues({ ...values, vaccine: [...(values?.vaccine || []), vaccine] });

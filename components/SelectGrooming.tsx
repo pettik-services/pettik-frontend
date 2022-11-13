@@ -17,9 +17,10 @@ const SelectServiceElement: React.FC<Props> = ({
 }) => {
   const petType = values?.pet?.type?.toLowerCase();
   const availableServices =
-    serviceDetails.filter(
-      (service: any) => service?.service_for?.toLowerCase() === petType
-    ) || [];
+    serviceDetails.filter((service: any) => {
+      const check = service?.service_for?.toLowerCase() === petType;
+      return true;
+    }) || [];
 
   const handleSelect = (service: any) => {
     setValues({ ...values, service: service });
