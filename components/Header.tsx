@@ -128,7 +128,7 @@ const Header = () => {
             content: "Extra 15% off on 1st order over ₹400 with code",
             promoCode: "PETTIKFIRST",
           }}
-          contact='997-116-1976'
+          contact='991-120-3330'
         />
       )}
       <Container maxWidth='xl'>

@@ -49,12 +49,12 @@ const Footer = () => {
           </span>
         </a>
         <a
-          href='tel:+918800273706'
+          href='tel:+919911203330'
           className='text-white font-regular hover:cursor-pointer hover:text-primary-dark text-md flex flex-row justify-start w-48 gap-2'>
           <span>
             <MdPhone size={24} />
           </span>
-          <span>+91 8800273706</span>
+          <span>+91 9911203330</span>
         </a>
         <a
           href='mailto:pettik.services@gmail.com'
