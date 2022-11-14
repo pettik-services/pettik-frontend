@@ -8,8 +8,8 @@ const PrivacyPolicy = () => {
         Privacy Policy for Pettik services Private Limited
       </h1>
       <p>
-        At Pettik, accessible from&nbsp;<a href={webUrl}>{webUrl}</a>, one of our
-        main priorities is the privacy of our visitors. This Privacy Policy
+        At Pettik, accessible from&nbsp;<a href={webUrl}>{webUrl}</a>, one of
+        our main priorities is the privacy of our visitors. This Privacy Policy
         document contains types of information that is collected and recorded by
         Pettik and how we use it.
       </p>
@@ -22,7 +22,7 @@ const PrivacyPolicy = () => {
         for visitors to our website with regards to the information that they
         shared and/or collect in Pettik. This policy is not applicable to any
         information collected offline or via channels other than this website.
-        Our Privacy Policy was created with the help of the{" "}
+        Our Privacy Policy was created with the help of the
         <a href='https://www.privacypolicygenerator.info/'>
           Free Privacy Policy Generator
         </a>
@@ -110,7 +110,7 @@ const PrivacyPolicy = () => {
         Thus, we are advising you to consult the respective Privacy Policies of
         these third-party ad servers for more detailed information. It may
         include their practices and instructions about how to opt-out of certain
-        options.{" "}
+        options.
       </p>
       <p>
         You can choose to disable cookies through your individual browser
