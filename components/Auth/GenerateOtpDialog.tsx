@@ -5,6 +5,7 @@ import Pug from "../../assets/images/pug.png";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
+import Link from "next/link";
 
 interface Props {
   handleClose: () => void;
@@ -67,16 +68,18 @@ const GenerateOtpDialog: React.FC<Props> = ({
             <span className='font-light text-xs text-center'>
               By continuing, I agree to the{" "}
               <span>
-                <a
+                <Link
                   className='text-center hover:cursor-pointer text-blue-dark'
+                  onClick={handleClose}
                   href='/terms-and-conditions'>
                   Terms of use
-                </a>
-              </span>{" "}
-              and
+                </Link>
+              </span>
+              &nbsp; and&nbsp;
               <span className='text-center hover:cursor-pointer text-blue-dark'>
-                {" "}
-                <a href='/privacy-policy'>Privacy & Cookie Policy</a>
+                <Link href='/privacy-policy' onClick={handleClose}>
+                  Privacy & Cookie Policy
+                </Link>
               </span>
             </span>
           </div>
