@@ -33,10 +33,10 @@ export const itemsData = {
     company: [
         {
             name: "Privacy Policy",
-            href: "/",
+            href: "/privacy-policy",
         }, {
             name: "Terms & Conditions",
-            href: "/",
+            href: "/terms-conditions",
         }, {
             name: "About Us",
             href: "/",
