@@ -2,14 +2,14 @@ export const itemsData = {
     mostSearched: [
         {
             name: "Dog Grooming",
-            href: "/",
+            href: "/grooming",
         },
         {
             name: "Cat Grooming",
-            href: "/",
+            href: "/grooming",
         }, {
             name: "Vaccination",
-            href: "/",
+            href: "/vaccination",
         },
     ],
     quickLinks: [
