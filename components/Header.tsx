@@ -68,17 +68,11 @@ const Header = () => {
 
   const handleOpenGenerateOTP = () => {
     setGenerateOTP(true);
-    if (typeof window != "undefined" && window.document) {
-      document.body.style.overflow = "hidden";
-    }
   };
   const handleCloseGenerateOTP = () => setGenerateOTP(false);
 
   const handleOpenSubmitOTP = () => {
     setSubmitOTP(true);
-    if (typeof window != "undefined" && window.document) {
-      document.body.style.overflow = "hidden";
-    }
   };
   const handleCloseSubmitOTP = () => setSubmitOTP(false);
 
