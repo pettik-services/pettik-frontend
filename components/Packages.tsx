@@ -104,7 +104,7 @@ const Packages = () => {
   return (
     <div className='flex flex-col items-center justify-center px-10 gap-y-6 text-center py-6 mb-12 md:mb-24'>
       <div className='text-xl md:text-2xl font-bold text-black md:w-1/3 pb-6'>
-        EXPLORE OR PACKAGES
+        EXPLORE MORE PACKAGES
       </div>
       <div className='w-full md:w-[80%] grid grid-cols-1 md:grid-cols-3 gap-y-8 md:gap-x-12 items-center justify-center'>
         {isGroomingLoading
