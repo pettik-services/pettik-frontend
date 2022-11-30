@@ -10,7 +10,7 @@ const bannersData: BannerItemProps[] = [
     desktopImage: Banner1,
     mobileImage: Banner1,
     content: {
-      title: `WE ARE HERE TO CARE OF YOUR LOVE ONCE`,
+      title: `WE ARE HERE TO CARE OF YOUR LOVE ONES`,
     },
     color: "dark",
     alignContent: "center",
