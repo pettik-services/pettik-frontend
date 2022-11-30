@@ -114,7 +114,7 @@ const Packages = () => {
                 image: service?.service_icon,
                 content: service?.included,
                 duration: service?.service_time,
-                price: service?.cost,
+                price: service?.discounted_cost,
                 title: service?.name,
               };
               return <PackageItem {...data} key={idx} />;
