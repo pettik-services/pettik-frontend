@@ -1,9 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '~antd/dist/antd.css';
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
 
 @layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   @font-face {
       font-family: 'sans-bold';
       src: url('../assets/fonts/sans-bold.ttf') format('truetype');
@@ -60,11 +67,18 @@
     font-family: 'sans-thin';
     src: url('../assets/fonts/sans-thin.ttf') format('truetype');
   }
+  @font-face {
+    font-family: 'nunito-black';
+    src: url('../assets/fonts/nunito-black.ttf') format('truetype');
+  }
   h6 {
       @apply font-bold
   }
   h1 {
       @apply font-bold text-3xl
+  }
+  h2 {
+    @apply font-semibold text-xl
   }
 }
 
@@ -77,4 +91,8 @@
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+.hide-input {
+  -webkit-text-security: disc;
 }

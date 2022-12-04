@@ -1,25 +1,39 @@
-import { BackTop } from "antd";
 import React from "react";
 import Footer from "./Footer/Footer";
-import Header from "./Header";
 import { AiOutlineVerticalAlignTop } from "react-icons/ai/index";
 import { useMediaQuery } from "react-responsive";
+import Fab from "@mui/material/Fab";
+import Box from "@mui/material/Box";
+import Header from "./Header";
 
 const Layout: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
       <div className='flex flex-col'>
         <Header />
-        <div className='pt-[8%]'>{children}</div>
+        <div className='pt-[14%] md:pt-[10%]'>{children}</div>
         <Footer />
         {!isTabletOrMobile && (
-          <BackTop>
-            <div className='bg-primary-dark w-12 h-12 flex items-center justify-center rounded-full text-white'>
+          <Box
+            onClick={scrollToTop}
+            role='presentation'
+            sx={{ position: "fixed", bottom: 16, right: 16 }}>
+            <Fab
+              size='small'
+              aria-label='scroll back to top'
+              className='bg-primary-dark text-white hover:text-black'>
               <AiOutlineVerticalAlignTop size={24} />
-            </div>
-          </BackTop>
+            </Fab>
+          </Box>
         )}
       </div>
     </>

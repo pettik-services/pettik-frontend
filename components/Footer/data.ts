@@ -1,32 +1,15 @@
 export const itemsData = {
     mostSearched: [
         {
-            name: "Dog Food",
-            href: "/",
-        },
-        {
-            name: "Dog Treat",
-            href: "/",
-        },
-        {
-            name: "Cat Food & Treat",
-            href: "/",
-        },
-        {
-            name: "Dog Toys & Acc.",
-            href: "/",
-        },
-        {
-            name: "Dog Healthcare",
-            href: "/",
-        },
-        {
-            name: "Cat Toys & Acc.",
-            href: "/",
-        },
-        {
             name: "Dog Grooming",
-            href: "/",
+            href: "/grooming",
+        },
+        {
+            name: "Cat Grooming",
+            href: "/grooming",
+        }, {
+            name: "Vaccination",
+            href: "/vaccination",
         },
     ],
     quickLinks: [
@@ -49,23 +32,13 @@ export const itemsData = {
     ],
     company: [
         {
-            name: "About Us",
-            href: "/",
-        },
-        {
-            name: "Careers",
-            href: "/",
-        },
-        {
-            name: "Contact Us",
-            href: "/",
-        },
-        {
-            name: "Terms & Conditions",
-            href: "/",
-        },
-        {
             name: "Privacy Policy",
+            href: "/privacy-policy",
+        }, {
+            name: "Terms & Conditions",
+            href: "/terms-conditions",
+        }, {
+            name: "About Us",
             href: "/",
         },
     ],
@@ -93,20 +66,12 @@ export const itemsData = {
     ],
     account: [
         {
-            name: "My Orders",
+            name: "User Profile",
             href: "/",
         },
         {
-            name: "My Wishlist",
+            name: "Pet Profile",
             href: "/",
-        },
-        {
-            name: "My Addresses",
-            href: "/",
-        },
-        {
-            name: "My Account",
-            href: "/",
-        },
+        }
     ],
 };

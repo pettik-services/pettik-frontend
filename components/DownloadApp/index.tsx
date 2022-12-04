@@ -12,7 +12,7 @@ const DownloadApp = () => {
           Icon={FaGooglePlay}
           downloadDesc='Download From'
           platform='Google Play'
-          href='https://play.google.com/store/apps'
+          href='https://play.google.com/store/apps/details?id=com.newaetate.pettik'
         />
         <DownloadButton
           Icon={BsApple}

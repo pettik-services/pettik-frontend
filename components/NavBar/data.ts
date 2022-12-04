@@ -14,5 +14,9 @@ export const NavData = [
     {
         title: 'Blog',
         path: '/blog',
-    }
+    },
+    {
+        title: 'Become a Partner',
+        path: '/become-partner',
+    },
 ]

@@ -1,24 +1,34 @@
 import React from "react";
-import Categories from "../components/Categories";
 import CustomCarousel from "../components/Carousel";
 import DownloadApp from "../components/DownloadApp";
-import OfferBanner from "../components/OfferBanner";
 import BlogHomePage from "../components/Blog/BlogHomePage";
+import Banner1 from "../assets/images/banner-1.png";
+import { BannerItemProps } from "../components/Carousel/CarouselItem";
+import Services from "../components/Services";
+
+const bannersData: BannerItemProps[] = [
+  {
+    desktopImage: Banner1,
+    mobileImage: Banner1,
+    content: {
+      buttonText: "SCHEDULE NOW",
+      description:
+        "Let us treat your pet like our family with best service and special package",
+      title: "Your Pet is part of our family",
+    },
+    color: "dark",
+    alignContent: "center",
+    showContent: true,
+    href: "/grooming/book",
+  },
+];
 
 const LandingPage = () => {
   return (
     <div className='h-full flex flex-col'>
-      <div className='w-full h-[60%] -z-10'>
-        <CustomCarousel />
-      </div>
-      <div className='h-[20%]'>
-        <DownloadApp />
-      </div>
-      <OfferBanner />
-      <div className='flex flex-col items-center justify-center py-8 gap-y-4'>
-        <div className='font-bold text-3xl'>Explore Services</div>
-        <Categories />
-      </div>
+      <CustomCarousel bannersData={bannersData} />
+      <DownloadApp />
+      <Services />
       <BlogHomePage />
     </div>
   );
