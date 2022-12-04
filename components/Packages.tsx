@@ -56,8 +56,8 @@ export const PackageItem: React.FC<ItemProps> = ({
         <Image
           src={image}
           alt={title}
-          width={20}
-          height={20}
+          width={200}
+          height={200}
           className='w-[120px] h-[120px] mb-4'
         />
         <div className='text-xl md:text-2xl font-nunito-black pb-4 text-center'>

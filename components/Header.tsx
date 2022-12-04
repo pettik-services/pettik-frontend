@@ -177,7 +177,7 @@ const Header = () => {
                 <div>
                   <Button
                     variant='contained'
-                    href='/dashboard'
+                    href='/path-to-dashboard'
                     endIcon={<EastIcon />}
                     className='rounded-lg py-2 px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
                     Dashboard
@@ -248,7 +248,7 @@ const DrawerContent: React.FC<DrawerProps> = ({
               <Button
                 variant='contained'
                 endIcon={<EastIcon />}
-                href='/dashboard'
+                href='/path-to-dashboard'
                 className='rounded-lg py-2 w-full px-8 bg-grey shadow-none text-blue-dark  font-bold text-sm hover:text-white hover:bg-primary-dark'>
                 Dashboard
               </Button>
