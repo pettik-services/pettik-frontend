@@ -43,7 +43,7 @@ const SelectServiceElement: React.FC<Props> = ({
               key={idx}
               title={service?.name}
               content={service?.included}
-              price={service?.cost}
+              price={service?.discounted_cost}
               image={service?.service_icon}
               duration={service?.service_time}
               buttonEnabled

@@ -3,12 +3,12 @@ import { webUrl } from "../utils/constants";
 
 const TermsAndConditions = () => {
   return (
-    <div className='font-sans px-6 pt-12 md:pt-0 pb-12 md:px-24 flex flex-col gap-y-4'>
-      <h1 className='font-nunito-black'>Terms and Conditions</h1>
+    <div className="font-sans px-6 pt-12 md:pt-0 pb-12 md:px-24 flex flex-col gap-y-4">
+      <h1 className="font-nunito-black">Terms and Conditions</h1>
       <p>Welcome to Pettik!</p>
       <p>
         These terms and conditions outline the rules and regulations for the use
-        of Pettik services Private Limited&apos;s Website, located at &nbsp;
+        of Pettik services Private Limited's Website, located at &nbsp;
         <a href={webUrl}>{webUrl}</a>.
       </p>
       <p>
@@ -18,36 +18,208 @@ const TermsAndConditions = () => {
       </p>
       <p>
         The following terminology applies to these Terms and Conditions, Privacy
-        Statement and Disclaimer Notice and all Agreements: &quot;Client&quot;,
-        &quot;You&quot; and &quot;Your&quot; refers to you, the person log on
-        this website and compliant to the Company’s terms and conditions.
-        &quot;The Company&quot;, &quot;Ourselves&quot;, &quot;We&quot;,
-        &quot;Our&quot; and &quot;Us&quot;, refers to our Company.
-        &quot;Party&quot;, &quot;Parties&quot;, or &quot;Us&quot;, refers to
-        both the Client and ourselves. All terms refer to the offer, acceptance
-        and consideration of payment necessary to undertake the process of our
-        assistance to the Client in the most appropriate manner for the express
-        purpose of meeting the Client’s needs in respect of provision of the
-        Company’s stated services, in accordance with and subject to, prevailing
-        law of Netherlands. Any use of the above terminology or other words in
-        the singular, plural, capitalization and/or he/she or they, are taken as
-        interchangeable and therefore as referring to same.
+        Statement and Disclaimer Notice and all Agreements: "Client", "You" and
+        "Your" refers to you, the person log on this website and compliant to
+        the Company’s terms and conditions. "The Company", "Ourselves", "We",
+        "Our" and "Us", refers to our Company. "Party", "Parties", or "Us",
+        refers to both the Client and ourselves. All terms refer to the offer,
+        acceptance and consideration of payment necessary to undertake the
+        process of our assistance to the Client in the most appropriate manner
+        for the express purpose of meeting the Client’s needs in respect of
+        provision of the Company’s stated services, in accordance with and
+        subject to, prevailing law of Netherlands. Any use of the above
+        terminology or other words in the singular, plural, capitalization
+        and/or he/she or they, are taken as interchangeable and therefore as
+        referring to same.
       </p>
       <h3>
-        <strong>Cookies</strong>
+        <strong>Payment</strong>
       </h3>
       <p>
-        We employ the use of cookies. By accessing Pettik, you agreed to use
-        cookies in agreement with the Pettik services Private Limited&apos;s
-        Privacy Policy.
+        When you use any of the payment methods on the website, we won't be
+        responsible or liable for any loss or damage that comes to you directly
+        or indirectly because of the following:.{" "}
       </p>
+      <ul className="pl-6 list-disc">
+        <li>Lack of authorization for any transaction/s, or</li>
+        <li>
+          Exceeding the preset limit mutually agreed by You and between
+          "Bank/s", or
+        </li>
+        <li>Payment problems caused by the transaction, or</li>
+        <li> Refusal of transaction for any other reason/s.</li>
+      </ul>
+
       <p>
-        Most interactive websites use cookies to let us retrieve the user&apos;s
-        details for each visit. Cookies are used by our website to enable the
-        functionality of certain areas to make it easier for people visiting our
-        website. Some of our affiliate/advertising partners may also use
-        cookies.
+        All of the payments you make for purchases or services on the website
+        must be made in Indian Rupees acceptable in the Republic of India. When
+        it comes to purchases made on Website, Website will not help with any
+        kind of transaction involving any other currency. Before shipping or
+        delivering your order to you, the Seller may ask you for proof of
+        identity and address, such as a government-issued ID and bill, to show
+        that you own the payment method you used to make the purchase. This is
+        done in the interest of providing a safe online shopping environment to
+        Our Users. Further:
       </p>
+
+      <ul className="pl-6 list-disc">
+        <li>
+          Transactions, Transaction Price, and all commercial terms such as
+          Delivery, Dispatch of products and/or services are based on principal
+          to principal bipartite contractual duties between Buyer and Seller,
+          and the payment facility is simply used to facilitate the completion
+          of the Transaction. Pettik shall not be accountable or responsible for
+          non-delivery, non-receipt, non-payment, damage, breach of
+          representations and warranties, non-provision of after sales or
+          warranty services, or fraud in relation to the products and/or
+          services advertised on Pettik's Website.
+        </li>
+        <li>
+          You have expressly allowed Pettik or its service providers to collect,
+          process, facilitate, and remit payments and/or the Transaction Price
+          electronically or through Cash on Delivery to and from other Users in
+          connection with Payment Facility transactions. Your relationship with
+          Pettik is principal to principal, and by accepting these Terms of Use,
+          you agree that Pettik is an independent contractor for all purposes,
+          and has no control over or liability for the products or services
+          offered on Pettik's Website and paid for via the Payment Facility.
+          Pettik does not guarantee any User's identity, nor does it promise
+          that a Buyer or Seller will finish a transaction.
+        </li>
+        <li>
+          You understand, accept, and agree that the Pettik payment facility is
+          not a banking or financial service, but rather a facilitator providing
+          an electronic, automated online electronic payment, receiving payment
+          through Cash On Delivery, collection, and remittance facility for
+          Transactions on the Pettik Website using the existing authorized
+          banking infrastructure and Credit Card payment gateway networks.
+          Furthermore, by offering the Payment Facility, Pettik is not acting as
+          trustees or in a fiduciary manner in relation to the Transaction or
+          the Transaction Price. Payment Facility for Buyers: • You, as a Buyer,
+          understand that by initiating a Transaction, You enter into a legally
+          binding and enforceable contract with the Seller to purchase the
+          products and/or services from the Seller using the Payment Facility,
+          and You shall pay the Transaction Price to the Seller using the
+          Payment Facility through Your Issuing Bank. • You, as a Buyer, may
+          agree with the Seller on any extension / increase in the Dispatch
+          and/or Delivery time through electronic communication and electronic
+          records and using the automated capabilities as may be given by
+          Payment Facility, and the Transaction shall stand changed to that
+          extent. Any such extension / increase in Dispatch / Delivery time, as
+          well as any subsequent novation / adjustment of the Transaction, must
+          be in accordance with Payment Facility Rules and Policies. • You, as a
+          Buyer, must electronically notify the Payment Facility immediately
+          upon delivery or failure to deliver within the time frame specified in
+          the Policies. Non notification by You of Delivery or failure to
+          deliver within the time frame stated in the Policies shall be
+          construed as a deemed Delivery in respect of that Transaction. Buyer
+          is not required to acknowledge receipt of products or services in the
+          event of Cash On Delivery transactions. • You, as a Buyer, have the
+          right to a refund of the Transaction Price (as Your sole and exclusive
+          remedy) if You do not receive the Delivery within the time period
+          agreed in the Transaction or the time period specified in the
+          Policies, whichever is earlier. If you do not submit a refund claim
+          via the Website's capabilities within the time frame specified, you
+          will be ineligible for a refund. • You, as a Buyer, understand that
+          the Payment Facility may not be accessible in full or in part for
+          certain categories of products and/or services and/or Transactions as
+          specified in the Policies, and as a result, You may not be entitled to
+          a refund for those Transactions. • With the exception of Cash On
+          Delivery transactions, any refunds must be paid at the same Issuing
+          Bank from whom the Transaction Price was received. • For Cash On
+          Delivery transactions, all refunds will be issued via demand draft in
+          the Buyer's name (As per registration details provided by the Buyer) •
+          The refund will be provided exclusively in Indian Rupees and will be
+          equal to the Transaction Price received in Indian Rupees. • For
+          electronic payments, refunds must be issued by NEFT/RTGS or any other
+          online banking / electronic funds transfer channel authorised by the
+          Reserve Bank of India (RBI). • The refund shall be conditional, with
+          Pettik having recourse in the event of Buyer's misuse. • Refunds are
+          subject to Buyer's compliance with the Policies.
+        </li>
+        <li>
+          {" "}
+          Pettik reserves the right to impose limits on the number of
+          Transactions or Transaction Prices that Pettik may receive from on an
+          individual Valid Credit/Debit/ Cash Card / Valid Bank Account/ and
+          such other infrastructure or any other financial instrument directly
+          or indirectly through payment aggregator or through any such facility
+          authorized by Reserve Bank of India to provide enabling support
+          facility for collection and remittance of payment or by an individual
+          Buyer during any time period, and reserves the right to refuse to
+          process Transactions exceeding such limit.
+        </li>
+        <li>
+          {" "}
+          Pettik maintains the right to refuse to process Transactions by Buyers
+          who have a history of questionable charges, including, but not limited
+          to, breach of any agreements with Pettik, breach/violation of any law,
+          charges imposed by the issuing bank, or infringement of any policy.
+        </li>
+        <li>
+          {" "}
+          Pettik may conduct such checks as it deem necessary before approving
+          the receipt of/Buyers commitment to pay (for Cash On Delivery
+          transactions) Transaction Price from the Buyer for security or other
+          reasons at Pettik's sole discretion. As a result of such check if
+          Pettik is not satisfied with the creditability of the Buyer or
+          genuineness of the Transaction / Transaction Price, it will have the
+          right to reject the receipt of / Buyers commitment to pay Transaction
+          Price.
+        </li>
+        <li>
+          {" "}
+          Pettik may delay notifying the payment confirmation, i.e. informing
+          Seller to Dispatch, if Pettik considers the transaction suspicious or
+          for Buyers conducting high transaction quantities to ensure the
+          transaction and transaction price's safety. Furthermore, Pettik may
+          retain Transaction Price and may not notify Seller to Dispatch or
+          remit Transaction Price to law enforcement officials (rather than
+          refunding the same to Buyer) at the request of law enforcement
+          officials or in the event the Buyer is engaging in any illegal
+          activity.
+        </li>
+        <li>
+          {" "}
+          The Buyer and Seller acknowledge that Pettik will not be liable for
+          any damages, interests or claims etc. arising from not processing a
+          Transaction/Transaction Price or any delay in processing a
+          Transaction/Transaction Price which is beyond control of Pettik.
+          Compliance with Laws:
+        </li>
+        <li>
+          {" "}
+          Buyer and Seller shall comply with all the applicable laws (including
+          without limitation Foreign Exchange Management Act, 1999 and the rules
+          made and notifications issued there under and the Exchange Control
+          Manual as may be issued by Reserve Bank of India from time to time,
+          Customs Act, Information and Technology Act, 2000 as amended by the
+          Information Technology (Amendment) Act 2008, Prevention of Money
+          Laundering Act, 2002 and the rules made there under, Foreign
+          Contribution Regulation Act, 1976 and the rules made there under,
+          Income Tax Act, 1961 and the rules made there under, Export Import
+          Policy of government of India) applicable to them respectively for
+          using Payment Facility and Pettik Website. Buyer's arrangement with
+          Issuing Bank:
+        </li>
+        <li>
+          {" "}
+          All valid credit/debit/cash card/ and other payment instruments are
+          processed using a credit card payment gateway or appropriate payment
+          system infrastructure, and the same is governed by the terms and
+          conditions agreed to between the Buyer and the respective issuing bank
+          and payment instrument issuing company.
+        </li>
+        <li>
+          {" "}
+          All Online Bank Transfers from Valid Bank Accounts are processed using
+          the gateway provided by the respective Issuing Bank which support
+          Payment Facility to provide these services to the Users. All such
+          Online Bank Transfers on Payment Facility are also subject to the
+          terms and conditions agreed upon by the Buyer and the respective
+          Issuing Bank.
+        </li>
+      </ul>
       <h3>
         <strong>License</strong>
       </h3>
@@ -59,7 +231,7 @@ const TermsAndConditions = () => {
         in these terms and conditions.
       </p>
       <p>You must not:</p>
-      <ul className='pl-6 list-disc'>
+      <ul className="pl-6 list-disc">
         <li>Republish material from Pettik</li>
         <li>Sell, rent or sub-license material from Pettik</li>
         <li>Reproduce, duplicate or copy material from Pettik</li>
@@ -67,8 +239,8 @@ const TermsAndConditions = () => {
       </ul>
       <p>
         This Agreement shall begin on the date hereof. Our Terms and Conditions
-        were created with the help of the
-        <a href='https://www.termsandconditionsgenerator.com/'>
+        were created with the help of the{" "}
+        <a href="https://www.termsandconditionsgenerator.com/">
           Free Terms and Conditions Generator
         </a>
         .
@@ -92,7 +264,7 @@ const TermsAndConditions = () => {
         inappropriate, offensive or causes breach of these Terms and Conditions.
       </p>
       <p>You warrant and represent that:</p>
-      <ul className='pl-6 list-disc'>
+      <ul className="pl-6 list-disc">
         <li>
           You are entitled to post the Comments on our website and have all
           necessary licenses and consents to do so;
@@ -123,7 +295,7 @@ const TermsAndConditions = () => {
         The following organizations may link to our Website without prior
         written approval:
       </p>
-      <ul className='pl-6 list-disc'>
+      <ul className="pl-6 list-disc">
         <li>Government agencies;</li>
         <li>Search engines;</li>
         <li>News organizations;</li>
@@ -149,7 +321,7 @@ const TermsAndConditions = () => {
         We may consider and approve other link requests from the following types
         of organizations:
       </p>
-      <ul className='pl-6 list-disc'>
+      <ul className="pl-6 list-disc">
         <li>commonly-known consumer and/or business information sources;</li>
         <li>dot.com community sites;</li>
         <li>associations or other groups representing charities;</li>
@@ -183,7 +355,7 @@ const TermsAndConditions = () => {
         2-3 weeks for a response.
       </p>
       <p>Approved organizations may hyperlink to our Website as follows:</p>
-      <ul className='pl-6 list-disc'>
+      <ul className="pl-6 list-disc">
         <li>By use of our corporate name; or</li>
         <li>By use of the uniform resource locator being linked to; or</li>
         <li>
@@ -193,8 +365,8 @@ const TermsAndConditions = () => {
         </li>
       </ul>
       <p>
-        No use of Pettik services Private Limited&apos;s logo or other artwork
-        will be allowed for linking absent a trademark license agreement.
+        No use of Pettik services Private Limited's logo or other artwork will
+        be allowed for linking absent a trademark license agreement.
       </p>
       <h3>
         <strong>iFrames</strong>
@@ -253,7 +425,7 @@ const TermsAndConditions = () => {
         representations, warranties and conditions relating to our website and
         the use of this website. Nothing in this disclaimer will:
       </p>
-      <ul className='pl-6 list-disc'>
+      <ul className="pl-6 list-disc">
         <li>
           limit or exclude our or your liability for death or personal injury;
         </li>
@@ -283,12 +455,6 @@ const TermsAndConditions = () => {
         damage of any nature.
       </p>
 
-      <p>
-        Generated using
-        <a href='https://www.termsandconditionsgenerator.com'>
-          Terms and Conditions Generator
-        </a>
-      </p>
     </div>
   );
 };
