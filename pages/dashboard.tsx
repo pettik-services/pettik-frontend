@@ -12,7 +12,7 @@ const DashboardNew = () => {
         <DetailsCard
           img={ProfileDetailsImg}
           content='Click here to view your profile details'
-          href='dashboard/pet-details'
+          href='dashboard/profile-details'
           title='Profile Details'
         />
         <DetailsCard
